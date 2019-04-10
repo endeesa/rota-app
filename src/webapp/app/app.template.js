@@ -12,6 +12,10 @@ export const AppTemplate = (props) => {
         work schedules quickly!</p>
     </section>
 
+    <section id="rooster-container" class="content">
+    Jan 2016 ,32 - A B C
+    </section>
+
     <section class="section participants">
         <h2 class="text-primary"> Generate roster </h2>
         <small> Add the names of the participants below to get started.</small> 
