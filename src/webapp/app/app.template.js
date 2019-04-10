@@ -1,7 +1,9 @@
 export const AppTemplate = (props) => {
     return `
+    <section class="section header">
         <header>
-            Welcome to <h1>${props.appName}</h1>
+            <h1>${props.appName}</h1>
         </header>
+    </section>
     `
 }

@@ -1,3 +1,21 @@
-.hello {
-    color: red;
-  }
+html{
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* Generic styles */
+.section{
+  display: grid;
+}
+
+/* ################ */
+
+/* Header styles */
+.header{
+  padding-left: 2em;
+  background-color: purple;
+  color: white;
+}
+
+/* ################ */
