@@ -15,13 +15,22 @@ export const AppTemplate = (props) => {
     <section class="section participants">
         <h2 class="text-primary"> Generate roster </h2>
         <small> Add the names of the participants below to get started.</small> 
-        <div class="input-field">
-            <input placeholder="Name of participant 1" id="name-1"/>
+        <form class="my-4">
+        <div class="form-field-wrapper">
+            <input class="form-field" placeholder="Name of participant 1" id="name-1"/>
+            <span class="shadow-form-field"></span>
         </div>
 
-        <div class="input-field">
-            <input placeholder="Name of participant 2"  id="name-1"/><i id="add-more-btn" class="fas fa-user-plus ml-1"></i>
+        <div class="form-field-wrapper">
+            <input class="form-field" placeholder="Name of participant 1" id="name-1"/>
+            <span class="shadow-form-field"></span>
         </div>
+
+        <div class="form-field-wrapper">
+            <input class="form-field" placeholder="Name of participant 2"  id="name-2"/><i id="add-more-btn" class="fas fa-user-plus ml-1"></i>
+            <span class="shadow-form-field"></span>
+        </div>
+        </form>
         <button id="generate-roster-btn">Generate roster<i class="fas fa-step-forward ml-1"></i></button>
     </section>
     `
