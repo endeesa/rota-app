@@ -1,14 +1,20 @@
-import _ from 'lodash';
-import './app.css'
+import { AppTemplate } from "./app.template";
+import "./app.css";
 
-function component() {
-    let element = document.createElement('div');
+const createApp = () => {
+  const appRoot = document.querySelector("#root");
+  const initState = {
+    appName: "Rota App"
+  };
 
-   // Lodash, currently included via a script, is required for this line to work
-    element.innerHTML = _.join(['Hello', 'webpack'], ' ');
-    element.classList.add('hello');
-
-    return element;
+  try {
+    appRoot.innerHTML = AppTemplate(initState);
+  } catch (error) {
+    console.error("Failed to initialise app: ", error);
   }
 
-  document.body.appendChild(component());
+};
+
+
+/**********************Initialise application************************ */
+createApp();
