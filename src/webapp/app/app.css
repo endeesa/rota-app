@@ -10,7 +10,7 @@ a{
 
 main{
   display: grid;
-  grid-template-rows: 150px auto 2fr 1fr;
+  grid-template-rows: 92px auto 2fr 1fr;
   min-height: 100vh;
 }
 
@@ -25,6 +25,9 @@ footer{
 }
 
 /* Generic classes */
+.ml-1{
+  margin-left: 1em;
+}
 .mb-1{
   margin-bottom: 1em;
 }
@@ -37,6 +40,9 @@ footer{
   margin-bottom: 4em;
 }
 
+.text-primary{
+  color: purple;
+}
 
 .section{
   justify-content: center;
@@ -60,3 +66,28 @@ footer{
   color: black;
 }
 /* ################ */
+
+/* Participants styles */
+#add-more-btn{
+  color: #E1BEE7;
+}
+
+#add-more-btn:hover{
+  color: purple;
+}
+
+#generate-roster-btn{
+  background-color: purple;
+  color: white;
+  border: 1px solid white;
+  font-weight: bolder;
+  border-radius: 1.5em;
+  padding: 1em;
+  width: 100%;
+}
+
+#generate-roster-btn:hover{
+  color: black;
+  background-color: #E1BEE7;
+}
+/* ############## */
