@@ -4,18 +4,59 @@ html{
   padding: 0;
 }
 
-/* Generic styles */
-.section{
+a{
+  color: purple;
+}
+
+main{
   display: grid;
+  grid-template-rows: 150px auto 2fr 1fr;
+  min-height: 100vh;
+}
+
+footer{
+  margin-top: 1em;
+  padding: 3em;
+  background-color: black;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center
+}
+
+/* Generic classes */
+.mb-1{
+  margin-bottom: 1em;
+}
+
+.mb-2{
+  margin-bottom: 2em;
+}
+
+.mb-4{
+  margin-bottom: 4em;
+}
+
+
+.section{
+  justify-content: center;
 }
 
 /* ################ */
 
 /* Header styles */
 .header{
-  padding-left: 2em;
+  height: 60px;;
   background-color: purple;
+  padding: 1em;
   color: white;
 }
 
+.intro{
+  display: -moz-grid-line;
+  justify-self: center;
+  padding: 0.5em 2em;
+  background-color: #E1BEE7;
+  color: black;
+}
 /* ################ */
