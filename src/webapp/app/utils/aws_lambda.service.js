@@ -22,7 +22,13 @@ export function MakeAsyncGetRequest(endpoint, key, responseContainerId){
     http.open('GET', endpoint);
     // http.setRequestHeader('x-api-key', key);
     // http.setRequestHeader('Access-Control-Allow-Origin', '*');
-    http.send();
+    if( !localStorage.getItem('fullSchedule')){
+        http.send();
+    }else{
+        const el = document.getElementById(responseContainerId);
+        el.innerText = localStorage.getItem('fullSchedule');
+    }
+    
 
     // http.addEventListener("readystatechange", processRequest, false);
     http.onreadystatechange = function() {
@@ -30,6 +36,7 @@ export function MakeAsyncGetRequest(endpoint, key, responseContainerId){
             // time to partay!!!
             const response = JSON.parse(http.responseText);
             console.log(response);
+            localStorage.setItem('fullSchedule', JSON.stringify(response));
             
             const el = document.getElementById(responseContainerId);
             el.innerText = JSON.stringify(response, null, 4);
