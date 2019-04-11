@@ -20,8 +20,8 @@
 export function MakeAsyncGetRequest(endpoint, key, responseContainerId){
     const http = new XMLHttpRequest();
     http.open('GET', endpoint);
-    http.setRequestHeader('x-api-key', key);
-    http.setRequestHeader('Access-Control-Allow-Origin', '*');
+    // http.setRequestHeader('x-api-key', key);
+    // http.setRequestHeader('Access-Control-Allow-Origin', '*');
     http.send();
 
     // http.addEventListener("readystatechange", processRequest, false);
@@ -32,7 +32,7 @@ export function MakeAsyncGetRequest(endpoint, key, responseContainerId){
             console.log(response);
             
             const el = document.getElementById(responseContainerId);
-            el.innerText = JSON.stringify(response);
+            el.innerText = JSON.stringify(response, null, 4);
         }
     }
 }

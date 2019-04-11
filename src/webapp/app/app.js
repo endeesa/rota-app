@@ -16,7 +16,7 @@ const createApp = () => {
 
   // Todo: Move to own container!
   MakeAsyncGetRequest(
-    "https://3gthhjctm4.execute-api.us-west-2.amazonaws.com/default/rota_geb_roster_api",
+    "https://3ttpf1otke.execute-api.us-west-2.amazonaws.com/qa/rota_geb_roster_api",
     "T7Cti60Nhf8ZT6A9yJYbq2vtVTH5FRjM2uUexJMz",
     "rooster-container"
   );
