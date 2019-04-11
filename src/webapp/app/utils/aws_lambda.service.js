@@ -36,5 +36,3 @@ export function MakeAsyncGetRequest(endpoint, key, responseContainerId){
         }
     }
 }
-
-// MakeAsyncGetRequest('https://1ci21hwkz6.execute-api.us-west-2.amazonaws.com/default/roster_gen_test', 'wg1D9Q5bnI4c4Nok1LLmH1Xy6WSX01l44k8Bfd7k')

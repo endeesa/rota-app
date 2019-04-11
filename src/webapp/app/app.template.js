@@ -1,3 +1,5 @@
+import { RoosterTemplate } from "./pages/rooster-container/rooster.template";
+
 export const AppTemplate = (props) => {
     return `
     <section class="section header">
@@ -12,6 +14,7 @@ export const AppTemplate = (props) => {
         work schedules quickly!</p>
     </section>
 
+    <aside id="rooter-placeholder"><aside/>
     <section id="rooster-container" class="content">
     Jan 2016 ,32 - A B C
     </section>

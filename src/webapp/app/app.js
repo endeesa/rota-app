@@ -1,6 +1,7 @@
 import { AppTemplate } from "./app.template";
 import { MakeAsyncGetRequest } from "./utils/aws_lambda.service";
 import "./app.css";
+import { RosterController } from "./pages/rooster-container/rooster.controller";
 
 const createApp = () => {
   const appRoot = document.querySelector("#root");
@@ -13,6 +14,9 @@ const createApp = () => {
   } catch (error) {
     console.error("Failed to initialise app: ", error);
   }
+
+  // Inject other page components
+  document.getElementById("rooter-placeholder").innerHTML += RosterController({section: 'roster'});
 
   // Todo: Move to own container!
   MakeAsyncGetRequest(
