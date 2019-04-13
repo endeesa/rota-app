@@ -30,7 +30,7 @@ const createApp = () => {
     "dash"
   );
 
-  document.getElementById("test").innerHTML += RosterController({section: 'roster', data: schedule});
+  document.getElementById("roster-container").innerHTML += RosterController({section: 'roster', data: schedule});
 };
 
 /**********************Initialise application************************ */
@@ -38,4 +38,42 @@ createApp();
 
 function generateRoster(e){
   alert('Start generating', e);
+}
+
+
+
+if (document.readyState !== 'loading') {
+  // alert('document is already ready, just execute code here');
+  addEventListeners();
+
+} else {
+  document.addEventListener('DOMContentLoaded', function () {
+      alert('document was not ready, place code here');
+
+      addEventListeners();
+
+  });
+}
+
+// Event hanlders
+function addEventListeners() {
+  // Export pdf btn
+  document.getElementById('export_to_pdf').addEventListener('click', () => {
+      alert('Starting pdf export...');
+  });
+}
+
+function completeTable(data){
+  const table = document.getElementById('more-rows');
+  let rows = "";
+  for( let key in data){
+      let row = `
+      <tr>
+          <td>${key}</td>
+      </tr>
+      `
+      rows += row;
+      table.innerHTML += rows;
+  }
+  alert('done!');
 }

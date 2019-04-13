@@ -1,3 +1,7 @@
 .content-wrapper{
     background: violet;
 }
+
+#schedule-table{
+    margin: 1px auto;
+}

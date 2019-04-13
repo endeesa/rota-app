@@ -25,8 +25,8 @@ export function MakeAsyncGetRequest(endpoint, key, responseContainerId){
     if( !localStorage.getItem('fullSchedule')){
         http.send();
     }else{
-        const el = document.getElementById(responseContainerId);
-        el.innerText = localStorage.getItem('fullSchedule');
+        // const el = document.getElementById(responseContainerId);
+        // el.innerText = localStorage.getItem('fullSchedule');
         return localStorage.getItem('fullSchedule');
     }
     
@@ -39,8 +39,8 @@ export function MakeAsyncGetRequest(endpoint, key, responseContainerId){
             console.log(response);
             localStorage.setItem('fullSchedule', JSON.stringify(response));
             
-            const el = document.getElementById(responseContainerId);
-            el.innerText = JSON.stringify(response, null, 4);
+            // const el = document.getElementById(responseContainerId);
+            // el.innerText = JSON.stringify(response, null, 4);
             return JSON.stringify(response)
         }
     }

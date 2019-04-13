@@ -49,12 +49,14 @@ export const AppTemplate = (props) => {
 
         </section>
 
-        <section id="dash" class="dashboard">
-            Unused
+        <section id="roster-container" class="roster-container">
         </section>
 
-        <section id="test">
+        <section class="footer">
+            &copy <a href="">Peculia.dev</a>
         </section>
+
+
     </div>
     `
 }
