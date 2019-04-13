@@ -5,7 +5,7 @@ export const AppTemplate = (props) => {
             <h1>Rota App</h1>
         </section>
 
-        <section class="header">
+        <section class="header shadow-lg">
             <p>
             <h2>What is rota?</h2>
             <span>
@@ -24,7 +24,7 @@ export const AppTemplate = (props) => {
         </section>
 
 
-        <section class="main-content">
+        <section class="main-content shaow-md">
         <main>
         <h1>Getting started</h1>
         <small>
@@ -49,7 +49,7 @@ export const AppTemplate = (props) => {
 
         </section>
 
-        <section id="roster-container" class="roster-container">
+        <section id="roster-container" class="roster-container shadow-md">
         </section>
 
         <section class="footer">
