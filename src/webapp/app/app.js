@@ -18,14 +18,14 @@ const createApp = () => {
   }
 
   // Inject other page components
-  document.getElementById("rooter-placeholder").innerHTML += RosterController({section: 'roster'});
+  // document.getElementById("rooter-placeholder").innerHTML += RosterController({section: 'roster'});
 
   // Todo: Move to own container!
-  MakeAsyncGetRequest(
-    "https://3ttpf1otke.execute-api.us-west-2.amazonaws.com/qa/rota_geb_roster_api",
-    "T7Cti60Nhf8ZT6A9yJYbq2vtVTH5FRjM2uUexJMz",
-    "rooster-container"
-  );
+  // MakeAsyncGetRequest(
+  //   "https://3ttpf1otke.execute-api.us-west-2.amazonaws.com/qa/rota_geb_roster_api",
+  //   "T7Cti60Nhf8ZT6A9yJYbq2vtVTH5FRjM2uUexJMz",
+  //   "rooster-container"
+  // );
 };
 
 /**********************Initialise application************************ */

@@ -10,7 +10,7 @@
   grid-template-areas:
   'nav nav nav nav nav nav'
   'hd hd hd hd share share'
-  'left main main main main right'
+  '. . main main . .'
   'dash dash dash dash dash dash'
   'footer footer footer footer footer footer'
   ;
@@ -21,6 +21,10 @@
 .grid-container > div {
   background-color: rgba(255, 255, 255, 0.8);
   text-align: center;
+}
+
+.test{
+  grid-area: nav;
 }
 
 /* Main sections */
@@ -40,25 +44,31 @@
 
 .social{
   grid-area: share;
+  margin: 1px auto;
   padding: 0.5em;
-}
-
-.social-icon{
-  font-size: 1.5em;
-  transition: all 50ms ease-out;
-}
-
-.social-icon:hover{
-  font-size: 2em;
-  color: purple
 }
 
 .main-content{
   grid-area: main;
   text-align: center;
-  margin: 2em auto;
-  padding: 0.5em;
+  margin: 1em auto;
 }
+
+.dashboard{
+  grid-area: dash;
+  background: aqua;
+}
+
+.social-icon{
+  font-size: 1.5em;
+  transition: all 100ms ease-out;
+}
+
+.social-icon:hover{
+  font-size: 2em;
+  color: purple;
+}
+
 
 /* Roster gen form */
 .centered-form{
@@ -94,10 +104,8 @@
  .fa-plus-circle{
    font-size: 2em;
  }
+
 /* End */
 
-.dashboard{
-  grid-area: dash;
-  background: navy;
-}
+
 /* ..End main sections */
