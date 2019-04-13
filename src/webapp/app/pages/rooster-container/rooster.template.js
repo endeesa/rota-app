@@ -12,6 +12,8 @@ export const RoosterTemplate = (model) => {
         <section id="calender-view">
             <h2>Click any cell to view upcoming shifts</h2>
 
+            <p>${model.data}</p>
+
             <button id="export_to_pdf">Export to pdf</button>
         </section>
     </article>

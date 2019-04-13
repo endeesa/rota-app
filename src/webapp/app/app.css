@@ -21,9 +21,14 @@ main>h1{
   '. . main main . .'
   'dash dash dash dash dash dash'
   'footer footer footer footer footer footer'
+  't t t t t t'
   ;
   grid-gap: 10px;
   background-color: #EDE7F6;
+}
+
+#test{
+  grid-area: t;
 }
 
 .grid-container > div {

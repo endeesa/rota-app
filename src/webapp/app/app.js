@@ -5,6 +5,9 @@ import "./shared/global.css";
 import { MakeAsyncGetRequest } from "./utils/aws_lambda.service";
 import { RosterController } from "./pages/rooster-container/rooster.controller";
 
+
+
+
 const createApp = () => {
   const appRoot = document.querySelector("#root");
   const initState = {
@@ -18,15 +21,21 @@ const createApp = () => {
   }
 
   // Inject other page components
-  // document.getElementById("rooter-placeholder").innerHTML += RosterController({section: 'roster'});
+  
 
   // Todo: Move to own container!
-  // MakeAsyncGetRequest(
-  //   "https://3ttpf1otke.execute-api.us-west-2.amazonaws.com/qa/rota_geb_roster_api",
-  //   "T7Cti60Nhf8ZT6A9yJYbq2vtVTH5FRjM2uUexJMz",
-  //   "rooster-container"
-  // );
+  const schedule = MakeAsyncGetRequest(
+    "https://3ttpf1otke.execute-api.us-west-2.amazonaws.com/qa/rota_geb_roster_api",
+    "T7Cti60Nhf8ZT6A9yJYbq2vtVTH5FRjM2uUexJMz",
+    "dash"
+  );
+
+  document.getElementById("test").innerHTML += RosterController({section: 'roster', data: schedule});
 };
 
 /**********************Initialise application************************ */
 createApp();
+
+function generateRoster(e){
+  alert('Start generating', e);
+}
