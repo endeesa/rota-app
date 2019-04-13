@@ -3,6 +3,7 @@
   padding: 4em;
   border-radius: 4em;
   text-align: center;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
 }
 
 #calender-view {
@@ -13,12 +14,28 @@
 
 .stepper {
   margin-top: 5em;
-  width: 100% !important;
   background: white;
   padding: 2.5em;
   border-radius: 1.5em;
   overflow-x: auto;
 }
+
+
+table{
+  width: 100%;
+}
+
+th{
+  background-color: purple;
+  color: white;
+  font-weight: bolder;
+  padding: 0.5em;
+  border-radius: 2em;
+}
+
+ td{
+   padding: 1.5em;
+ }
 
 /* Stepper styles */
 .md-stepper-horizontal {

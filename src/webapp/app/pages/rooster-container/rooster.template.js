@@ -69,17 +69,25 @@ const createStepper = (data) =>{
 
 
 const createScheduleRows = (data) => {
+    
     let rows = "";
     for (let key in data) {
+       let currDate = incrementDate( parseInt(key) );
         let row = `
         <tr>
-            <td>${key}</td>
+            <td>${ currDate }</td>
             <td>${data[key][0]}</td>
             <td>${data[key][1]}</td>
             <td>${data[key][2]}</td>
         </tr>
-        `
+        `;
         rows += row;
     }
     return rows;
+}
+
+function incrementDate(incrementBy){
+  const today = new Date();
+  today.setDate(today.getDate() + incrementBy);
+  return today.toDateString();
 }
