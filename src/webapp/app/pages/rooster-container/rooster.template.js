@@ -21,12 +21,13 @@ export const RoosterTemplate = (model) => {
             </table>
             
         </section>
-        <button id="export_to_pdf">Export to pdf</button>
+        <button class="btn-primary" id="export_to_pdf">Export to pdf</button>
+        <button class="btn-outline-primary" id="create-another">Create new roster</button>
     </article>
 
     <div class="stepper shadow-md">
     <setion>
-        <h4 class="heading">Detailed View</h4>
+        <h4 class="heading">Individual view View</h4>
     </section>
 
     <!--Begin stepper-->

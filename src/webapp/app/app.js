@@ -36,11 +36,6 @@ const createApp = () => {
 /**********************Initialise application************************ */
 createApp();
 
-function generateRoster(e){
-  alert('Start generating', e);
-}
-
-
 
 if (document.readyState !== 'loading') {
   // alert('document is already ready, just execute code here');
@@ -57,23 +52,21 @@ if (document.readyState !== 'loading') {
 
 // Event hanlders
 function addEventListeners() {
+  const formContainer = document.getElementById('main-content');
   // Export pdf btn
   document.getElementById('export_to_pdf').addEventListener('click', () => {
       alert('Starting pdf export...');
   });
-}
 
-function completeTable(data){
-  const table = document.getElementById('more-rows');
-  let rows = "";
-  for( let key in data){
-      let row = `
-      <tr>
-          <td>${key}</td>
-      </tr>
-      `
-      rows += row;
-      table.innerHTML += rows;
-  }
-  alert('done!');
+  // create another roster
+  document.getElementById('create-another').addEventListener('click', ()=>{
+    formContainer.style.display = 'initial';
+  });
+
+  //Show full schedule
+  document.getElementById('generate-rooster').addEventListener('click', ()=>{
+    formContainer.style.display = 'none';
+  });
+
+
 }

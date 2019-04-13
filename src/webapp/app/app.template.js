@@ -24,7 +24,7 @@ export const AppTemplate = (props) => {
         </section>
 
 
-        <section class="main-content shaow-md">
+        <section id="main-content" class="main-content shaow-md">
         <main>
         <h1>Getting started</h1>
         <small>
@@ -43,7 +43,7 @@ export const AppTemplate = (props) => {
             <input placeholder="Name of work section e.g. Packaging" id="section1"/>
             <input placeholder="Name of work section e.g. Operations" id="section2"/>
             <i class="fas fa-plus-circle"></i>
-            <button type="button">Generate roster</button>
+            <button type="button" id="generate-rooster">Generate roster</button>
         </form>
         </main>
 

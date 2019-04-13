@@ -1,7 +1,7 @@
 {
   "name": "Rota-App",
   "version": "1.0.0-beta",
-  "description": "A simple shift schedular built with vanillaJs",
+  "description": "A simple shift schedular built with vanillaJS",
   "private": true,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
