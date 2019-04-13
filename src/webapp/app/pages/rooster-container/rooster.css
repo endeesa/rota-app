@@ -1,7 +1,13 @@
 .content-wrapper{
-    background: violet;
+    background: white;
+    padding: 4em;
+    border-radius: 4em;
+    text-align: center;
 }
 
-#schedule-table{
-    margin: 1px auto;
+#calender-view{
+    margin: 3em auto;
+    text-align: center;
+    justify-self: center;
 }
+

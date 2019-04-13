@@ -5,9 +5,9 @@ export const RoosterTemplate = (model) => {
 
     return `
     <article class="content-wrapper">
-        <h1></h1>
+        <h1 class="heading mb-1">Your ${Object.keys(model).length} day roster</h1>
         <section id="daily-view">
-            Today : ${today}
+            Starting from today : ${today}
         </section>
 
         <section id="calender-view">
@@ -19,8 +19,9 @@ export const RoosterTemplate = (model) => {
                 <th>WARDS</th></tr>
                 ${scheduleRows}
             </table>
-            <button id="export_to_pdf">Export to pdf</button>
+            
         </section>
+        <button id="export_to_pdf">Export to pdf</button>
     </article>
     `
 }
@@ -32,6 +33,9 @@ const createScheduleRows = (data) => {
         let row = `
         <tr>
             <td>${key}</td>
+            <td>${data[key][0]}</td>
+            <td>${data[key][1]}</td>
+            <td>${data[key][2]}</td>
         </tr>
         `
         rows += row;

@@ -53,7 +53,7 @@ export const AppTemplate = (props) => {
         </section>
 
         <section class="footer">
-            &copy <a href="">Peculia.dev</a>
+            &copy <a href="https:/twitter.com/Banzyme2">Peculia.dev</a>
         </section>
 
 

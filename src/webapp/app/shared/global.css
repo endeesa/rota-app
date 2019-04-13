@@ -1,3 +1,11 @@
+.heading{
+    color: #4A148C;
+}
+
 .mr-1{
     margin-right: 8px;
+}
+
+.mb-1{
+    margin-bottom: 8px;
 }
