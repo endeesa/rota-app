@@ -27,7 +27,7 @@ export const RoosterTemplate = (model) => {
 
     <div class="stepper shadow-md">
     <setion>
-        <h4 class="heading">Individual view View</h4>
+        <h4 class="heading">Individual View</h4>
     </section>
 
     <!--Begin stepper-->

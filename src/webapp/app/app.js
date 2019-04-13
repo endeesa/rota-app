@@ -53,6 +53,7 @@ if (document.readyState !== 'loading') {
 // Event hanlders
 function addEventListeners() {
   const formContainer = document.getElementById('main-content');
+  const rosterContainer = document.getElementById('roster-container');
   // Export pdf btn
   document.getElementById('export_to_pdf').addEventListener('click', () => {
       alert('Starting pdf export...');
@@ -61,11 +62,13 @@ function addEventListeners() {
   // create another roster
   document.getElementById('create-another').addEventListener('click', ()=>{
     formContainer.style.display = 'initial';
+    rosterContainer.style.display = 'none';
   });
 
   //Show full schedule
   document.getElementById('generate-rooster').addEventListener('click', ()=>{
     formContainer.style.display = 'none';
+    rosterContainer.style.display = 'initial';
   });
 
 

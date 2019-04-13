@@ -26,9 +26,6 @@ main>h1{
   grid-gap: 10px;
 }
 
-#test{
-  grid-area: t;
-}
 
 .grid-container > div {
   background-color: rgba(255, 255, 255, 0.8);
@@ -77,6 +74,7 @@ main>h1{
 
 .social-icon{
   font-size: 1.5em;
+  color: deeppink;
   transition: all 100ms ease-out;
 }
 
@@ -102,7 +100,7 @@ main>h1{
  hr{
    width: 20%;
    border:1px solid deeppink;
-   margin: 2em auto;
+   margin: 0.5em auto;
  }
  
  button{
@@ -130,6 +128,7 @@ main>h1{
 
 .roster-container{
   grid-area: rost;
+  display: none;
   margin: 2em auto;
   padding: 3em;
 }
