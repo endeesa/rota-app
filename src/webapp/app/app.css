@@ -24,7 +24,6 @@ main>h1{
   'footer footer footer footer footer footer'
   ;
   grid-gap: 10px;
-  background-color: #EDE7F6;
 }
 
 #test{
@@ -141,3 +140,21 @@ main>h1{
 }
 
 /* ..End main sections */
+
+
+
+/* Mobile */
+@media only screen and(max-width:768px){
+  .grid-container{
+    grid-template-areas:
+    'nav nav nav nav nav nav'
+    'hd hd hd hd hd hd'
+    'share share share share share share'
+    'main main main main main main'
+    'dash dash dash dash dash dash'
+    'rost rost rost rost rost rost'
+    'footer footer footer footer footer footer'
+    ;
+    grid-gap: 5px;
+  }
+}
