@@ -1,6 +1,8 @@
-import { AppTemplate } from "./app.template";
-import { MakeAsyncGetRequest } from "./utils/aws_lambda.service";
 import "./app.css";
+import { AppTemplate } from "./app.template";
+
+import "./shared/global.css";
+import { MakeAsyncGetRequest } from "./utils/aws_lambda.service";
 import { RosterController } from "./pages/rooster-container/rooster.controller";
 
 const createApp = () => {

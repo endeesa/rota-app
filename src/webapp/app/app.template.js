@@ -1,20 +1,33 @@
-import { RoosterTemplate } from "./pages/rooster-container/rooster.template";
-
 export const AppTemplate = (props) => {
     return `
     <div class="grid-container">
         <section class="top-nav">
-        Nv
+            <h1>Rota App</h1>
         </section>
+
         <section class="header">
-        Hd
+            <p>
+            <h2>What is rota?</h2>
+            <span>
+              Rota is a simple web app that 
+              helps you create fair rosters
+              within a few seconds.
+            </p>
         </section>
+
         <section class="social">
-        Share this
+            <small>Share<small>
+            <br>
+            <i class="fab fa-twitter social-icon mr-1"></i>
+            <i class="fab fa-facebook social-icon mr-1"></i>
+            <i class="fab fa-linkedin social-icon"></i>
         </section>
+
         <section class="main-content">
         Main
         </section>
+
+        
         <section class="dashboard">
         Unused
         </section>
