@@ -7,11 +7,27 @@ import { RosterController } from "./pages/rooster-container/rooster.controller";
 
 
 
-
+// Initialise app container
 const createApp = () => {
   const appRoot = document.querySelector("#root");
   const initState = {
     appName: "Rota App"
+  };
+
+  // User inputs - mocks
+// Todo: Read values from DOM
+  const spanInDays = 30;
+  const workforce = {
+    1: "Dr M Doe",
+    2: "Dr P Davies",
+    3: "Dr M Patison",
+    4: "Dr M Rian",
+    5: "Dr M Lei"
+  };
+  const departments = {
+    1: "Casualty",
+    2: "Maternity",
+    3: "Wards"
   };
 
   try {
@@ -20,9 +36,6 @@ const createApp = () => {
     console.error("Failed to initialise app: ", error);
   }
 
-  // Inject other page components
-  
-
   // Todo: Move to own container!
   const schedule = MakeAsyncGetRequest(
     "https://3ttpf1otke.execute-api.us-west-2.amazonaws.com/qa/rota_geb_roster_api",
@@ -30,46 +43,50 @@ const createApp = () => {
     "dash"
   );
 
-  document.getElementById("roster-container").innerHTML += RosterController({section: 'roster', data: schedule});
+  // Inject other page components
+  document.getElementById("roster-container").innerHTML += RosterController({
+    section: "roster",
+    data: JSON.parse(schedule),
+    rawInputs: {
+      span: spanInDays,
+      staff: workforce,
+      sections: departments
+    }
+  });
 };
 
 /**********************Initialise application************************ */
 createApp();
 
-
-if (document.readyState !== 'loading') {
+if (document.readyState !== "loading") {
   // alert('document is already ready, just execute code here');
   addEventListeners();
-
 } else {
-  document.addEventListener('DOMContentLoaded', function () {
-      alert('document was not ready, place code here');
+  document.addEventListener("DOMContentLoaded", function() {
+    alert("document was not ready, place code here");
 
-      addEventListeners();
-
+    addEventListeners();
   });
 }
 
 // Event hanlders
 function addEventListeners() {
-  const formContainer = document.getElementById('main-content');
-  const rosterContainer = document.getElementById('roster-container');
+  const formContainer = document.getElementById("main-content");
+  const rosterContainer = document.getElementById("roster-container");
   // Export pdf btn
-  document.getElementById('export_to_pdf').addEventListener('click', () => {
-      alert('Starting pdf export...');
+  document.getElementById("export_to_pdf").addEventListener("click", () => {
+    alert("Starting pdf export...");
   });
 
   // create another roster
-  document.getElementById('create-another').addEventListener('click', ()=>{
-    formContainer.style.display = 'initial';
-    rosterContainer.style.display = 'none';
+  document.getElementById("create-another").addEventListener("click", () => {
+    formContainer.style.display = "initial";
+    rosterContainer.style.display = "none";
   });
 
   //Show full schedule
-  document.getElementById('generate-rooster').addEventListener('click', ()=>{
-    formContainer.style.display = 'none';
-    rosterContainer.style.display = 'initial';
+  document.getElementById("generate-rooster").addEventListener("click", () => {
+    formContainer.style.display = "none";
+    rosterContainer.style.display = "initial";
   });
-
-
 }

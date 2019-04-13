@@ -35,7 +35,20 @@ th{
 
  td{
    padding: 1.5em;
+   transition: all 80ms ease-in;
  }
+
+tr:nth-child(even) {
+  background-color: #F3E5F5;
+}
+
+tr:nth-child(odd) {
+  background-color: #e495e4;
+}
+
+td:hover{
+  background: white;
+}
 
 /* Stepper styles */
 .md-stepper-horizontal {

@@ -2,13 +2,10 @@ import { RoosterTemplate } from './rooster.template';
 import './rooster.css';
 
 export const RosterController = (props) => {
+    // Process inputs and events?
 
-    // verify/process app data
-    const data = props.data;
     //then render
-    return render(JSON.parse(data));
-
-
+    return render(props);
 }
 
 function render(model) {

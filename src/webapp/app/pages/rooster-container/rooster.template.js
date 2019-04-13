@@ -1,11 +1,13 @@
 export const RoosterTemplate = (model) => {
     // Receives full schedule from parent container
     const today = new Date();
-    const scheduleRows = createScheduleRows(model);
+    const employeeNamesMap = model.rawInputs.staff; 
+    const scheduleRows = createScheduleRows(model.data, employeeNamesMap);
+    
 
     return `
     <article class="content-wrapper">
-        <h1 class="heading mb-1">Your ${Object.keys(model).length} day roster</h1>
+        <h1 class="heading mb-1">Your ${model.rawInputs.span} day roster</h1>
         <section id="daily-view">
             Starting from today : ${today}
         </section>
@@ -27,7 +29,7 @@ export const RoosterTemplate = (model) => {
 
     <div class="stepper shadow-md">
     <setion>
-        <h4 class="heading">Individual View</h4>
+        <h4 class="heading">Detailed View - <small>Mr ....</small></h4>
     </section>
 
     <!--Begin stepper-->
@@ -69,7 +71,7 @@ const createStepper = (data) =>{
 }
 
 
-const createScheduleRows = (data) => {
+const createScheduleRows = (data, names) => {
     
     let rows = "";
     for (let key in data) {
@@ -77,9 +79,9 @@ const createScheduleRows = (data) => {
         let row = `
         <tr>
             <td>${ currDate }</td>
-            <td>${data[key][0]}</td>
-            <td>${data[key][1]}</td>
-            <td>${data[key][2]}</td>
+            <td>${ names[ data[key][0] ] }</td>
+            <td>${ names[ data[key][1] ]}</td>
+            <td>${ names[ data[key][2] ] }</td>
         </tr>
         `;
         rows += row;
