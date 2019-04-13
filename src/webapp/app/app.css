@@ -10,7 +10,7 @@
   grid-template-areas:
   'nav nav nav nav nav nav'
   'hd hd hd hd share share'
-  'menu main main main main right'
+  'left main main main main right'
   'dash dash dash dash dash dash'
   'footer footer footer footer footer footer'
   ;
@@ -35,6 +35,7 @@
 .header{
   grid-area: hd;
   background: white;
+  padding: 1em 2em;
 }
 
 .social{
@@ -54,7 +55,46 @@
 
 .main-content{
   grid-area: main;
+  text-align: center;
+  margin: 2em auto;
+  padding: 0.5em;
 }
+
+/* Roster gen form */
+.centered-form{
+  background-color: whitesmoke;
+  display: grid;
+  grid-row-gap: 0.5em;
+  padding: 1em;
+ }
+ 
+ input{
+   padding: 1em;
+   border: none;
+   border-radius: 1.5em;
+ }
+ 
+ input::focus{
+  border-radius: 1.5em;
+ }
+ 
+ hr{
+   width: 40%;
+   background: pink;
+ }
+ 
+ button{
+  padding: 1em;
+  border: 1px solid purple;
+  background: purple;
+  border-radius: 0.5em;
+  color: white;
+ }
+ 
+ .fa-plus-circle{
+   font-size: 2em;
+ }
+/* End */
 
 .dashboard{
   grid-area: dash;

@@ -24,10 +24,30 @@ export const AppTemplate = (props) => {
         </section>
 
         <section class="main-content">
-        Main
+            <main>
+            <h1>Getting started</h1>
+            <small>
+                Simply fill in the required fields 
+                below to generate your new roster.
+            </small>
+                <form class="centered-form">
+                
+                
+                
+                <input placeholder="total_sections" id="1"/>
+                <input placeholder="span" id="1"/>
+                
+                <hr>
+                <input placeholder="participant" id="1"/>
+                <input placeholder="participant" id="1"/>
+                <input placeholder="participant" id="1"/>
+                <i class="fas fa-plus-circle left"></i>
+                <button type="submit">Generate roster</button>
+            </form>
+            </smain>
         </section>
 
-        
+
         <section class="dashboard">
         Unused
         </section>
