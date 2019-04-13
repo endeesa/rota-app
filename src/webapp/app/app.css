@@ -1,128 +1,54 @@
-html {
-  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
-  margin: 0;
+*{
   padding: 0;
+  margin: 0;
 }
 
-a {
-  color: purple;
-}
 
-main {
+.grid-container{
   display: grid;
-  grid-template-rows: 80px auto auto 2fr 1fr;
-  min-height: 100vh;
+  grid-template-areas:
+  'nav nav nav nav nav nav'
+  'hd hd hd hd share share'
+  'menu main main main main right'
+  'dash dash dash dash dash dash'
+  'footer footer footer footer footer footer'
+  ;
+  grid-gap: 10px;
+  background-color: #2196F3;
 }
 
-input {
-  border: none;
-  width: 80%;
-  padding: 15px 22px;
-  margin: 10px 5px;
-  border: 1px solid purple;
-  border-radius: 1.5em !important;
+.grid-container > div {
+  background-color: rgba(255, 255, 255, 0.8);
+  text-align: center;
+  padding: 20px 0;
 }
 
-input:focus {
-  font-size: 1.1em;
+
+
+
+
+/* Main sections */
+.top-nav{
+  grid-area: nav;
+  background: yellow;
 }
 
-footer {
-  margin-top: 1em;
-  padding: 3em;
-  background-color: #263238;
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.header{
+  grid-area: hd;
+  background: white;
 }
 
-/* Generic classes */
-.ml-1 {
-  margin-left: 1em;
-}
-.mb-1 {
-  margin-bottom: 1em;
+.social{
+  background: red;
+  grid-area: share;
 }
 
-.mb-2 {
-  margin-bottom: 2em;
+.main-content{
+  grid-area: main;
 }
 
-.mb-4 {
-  margin-bottom: 4em;
+.dashboard{
+  grid-area: dash;
+  background: navy;
 }
-
-.my-4 {
-  margin-bottom: 2em;
-  margin-top: 2em;
-}
-
-.text-primary {
-  color: purple;
-}
-
-.section {
-  justify-content: center;
-}
-
-/* ################ */
-
-/* Header styles */
-.header {
-  height: 60px;
-  background-color: purple;
-  padding: 1em;
-  color: white;
-}
-
-.intro {
-  display: -moz-grid-line;
-  justify-self: center;
-  padding: 0.5em 2em;
-  background-color: #e1bee7;
-  color: black;
-  font-style: italic;
-  border-radius: 1em;
- 
-}
-/* ################ */
-
-/* Participants styles */
-
-.participants {
-  margin-top: 5em;
-  display: -moz-grid-line;
-  justify-self: center;
-}
-
-#rooster-container {
-  display: hidden !important;
-}
-
-#add-more-btn {
-  color: #e1bee7;
-}
-
-#add-more-btn:hover {
-  color: purple;
-}
-
-#generate-roster-btn {
-  background-color: purple;
-  color: white;
-  border: 1px solid white;
-  font-weight: bolder;
-  border-radius: 1.5em;
-  padding: 1em;
-  width: 100%;
-  box-shadow: 0 15px 30px 0 rgba(0,0,0,0.11),
-  0 5px 15px 0 rgba(0,0,0,0.08);
-}
-
-#generate-roster-btn:hover {
-  color: black;
-  background-color: #e1bee7;
-}
-
-/* ############## */
+/* ..End main sections */
