@@ -1,5 +1,5 @@
-import { RoosterTemplate } from "./rooster.template";
 import "./rooster.css";
+import { RoosterTemplate } from "./rooster.template";
 
 export const RosterController = props => {
   // Process inputs and events?
@@ -21,17 +21,17 @@ function render(model) {
 
 
 
-if (document.readyState !== "loading") {
-  alert(document.getElementById('export_to_pdf'));
+// if (document.readyState !== "loading") {
+//   alert(document.getElementById('export_to_pdf'));
   
-  document.getElementById('export_to_pdf').addEventListener('click', ()=>{
-    alert('I have been triggere');
-  })
+//   document.getElementById('export_to_pdf').addEventListener('click', ()=>{
+//     alert('I have been triggere');
+//   })
 
-} else {
-  document.addEventListener("DOMContentLoaded", function() {
-    alert("document was not ready, place code here");
+// } else {
+//   document.addEventListener("DOMContentLoaded", function() {
+//     alert("document was not ready, place code here");
 
-    // addEventListeners();
-  });
-}
+//     // addEventListeners();
+//   });
+// }
