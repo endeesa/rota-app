@@ -27,11 +27,11 @@ function addEventListener$() {
   });
 
   document.getElementById("staff-input-add").addEventListener("click", ()=>{
-      addInputToForm("roster-form-container", "staff-input");
+      addInputToForm("staff-input-div", "staff-input");
   });
 
   document.getElementById("section-input-add").addEventListener("click", ()=>{
-    addInputToForm("roster-form-container", "section-input");
+    addInputToForm("section-input-div", "section-input");
   });
 }
 
