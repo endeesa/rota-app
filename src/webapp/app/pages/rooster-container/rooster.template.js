@@ -1,13 +1,12 @@
-export const RoosterTemplate = (model) => {
-    // Receives full schedule from parent container
-    const today = new Date();
-    const employeeNamesMap = model.rawInputs.staff; 
-    const scheduleRows = createScheduleRows(model.data, employeeNamesMap);
-    
+export const RoosterTemplate = model => {
+  // Receives full schedule from parent container
+  const today = new Date();
+  const employeeNamesMap = model.rawInputs.staff;
+  const scheduleRows = createScheduleRows(model.data, employeeNamesMap);
 
     return `
     <article class="content-wrapper">
-        <h1 class="heading mb-1">Your ${model.rawInputs.span} day roster</h1>
+        <h1 class="heading mb-1" onclick="createStepper()">Your ${model.rawInputs.span} day roster</h1>
         <section id="daily-view">
             Starting from today : ${today}
         </section>
@@ -62,34 +61,38 @@ export const RoosterTemplate = (model) => {
     </div>
     <!--End stepper-->
     </div>
-    `
-}
+    `;
+
+  // const result = new Promise((resolve, reject) => {
+  //   resolve(markup);
+  // });
+
+  // return markup;
+};
 
 // Display/Presentation logic
-const createStepper = (data) =>{
-    // TODO
-}
-
+export const createStepper = () => {
+  alert('HHHHHH!!!!!!!!');
+};
 
 const createScheduleRows = (data, names) => {
-    
-    let rows = "";
-    for (let key in data) {
-       let currDate = incrementDate( parseInt(key) );
-        let row = `
+  let rows = "";
+  for (let key in data) {
+    let currDate = incrementDate(parseInt(key));
+    let row = `
         <tr>
-            <td>${ currDate }</td>
-            <td>${ names[ data[key][0] ] }</td>
-            <td>${ names[ data[key][1] ]}</td>
-            <td>${ names[ data[key][2] ] }</td>
+            <td>${currDate}</td>
+            <td>${names[data[key][0]]}</td>
+            <td>${names[data[key][1]]}</td>
+            <td>${names[data[key][2]]}</td>
         </tr>
         `;
-        rows += row;
-    }
-    return rows;
-}
+    rows += row;
+  }
+  return rows;
+};
 
-function incrementDate(incrementBy){
+function incrementDate(incrementBy) {
   const today = new Date();
   today.setDate(today.getDate() + incrementBy);
   return today.toDateString();

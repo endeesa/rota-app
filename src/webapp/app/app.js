@@ -4,8 +4,7 @@ import { AppTemplate } from "./app.template";
 import "./shared/global.css";
 import { MakeAsyncGetRequest } from "./utils/aws_lambda.service";
 import { RosterController } from "./pages/rooster-container/rooster.controller";
-
-
+import { CreateRosterComponent } from "./pages/components/create-roster-form/create-roster.component";
 
 // Initialise app container
 const createApp = () => {
@@ -15,7 +14,7 @@ const createApp = () => {
   };
 
   // User inputs - mocks
-// Todo: Read values from DOM
+  // Todo: Read values from DOM
   const spanInDays = 30;
   const workforce = {
     1: "Dr M Doe",
@@ -45,7 +44,6 @@ const createApp = () => {
 
   // Inject other page components
   document.getElementById("roster-container").innerHTML += RosterController({
-    section: "roster",
     data: JSON.parse(schedule),
     rawInputs: {
       span: spanInDays,
@@ -53,7 +51,12 @@ const createApp = () => {
       sections: departments
     }
   });
-};
+
+  const form = new CreateRosterComponent(schedule);
+  document.getElementById("main-content").innerHTML += form.render();
+
+
+}
 
 /**********************Initialise application************************ */
 createApp();
@@ -63,7 +66,7 @@ if (document.readyState !== "loading") {
   addEventListeners();
 } else {
   document.addEventListener("DOMContentLoaded", function() {
-    alert("document was not ready, place code here");
+    // alert("document was not ready, place code here");
 
     addEventListeners();
   });
@@ -89,4 +92,12 @@ function addEventListeners() {
     formContainer.style.display = "none";
     rosterContainer.style.display = "initial";
   });
+
+  // Listen to cell events
+  document.querySelectorAll("#shedule-table td").forEach(e =>
+    e.addEventListener("click", function(event) {
+      // Here, `this` refers to the element the event was hooked on
+      alert(`Clicked: ${event.target.innerHTML}`);
+    })
+  );
 }
