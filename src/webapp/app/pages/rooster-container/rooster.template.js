@@ -1,5 +1,6 @@
 export const RoosterTemplate = model => {
   // Receives full schedule from parent container
+  console.log(`Roster ${typeof(model)} model: ${model.data}`);
   const today = new Date();
   const employeeNamesMap = model.rawInputs.staff;
   const scheduleRows = createScheduleRows(model.data, employeeNamesMap);
@@ -78,6 +79,7 @@ export const createStepper = () => {
 const createScheduleRows = (data, names) => {
   let rows = "";
   for (let key in data) {
+    console.log(`Key: ${key}, Value: ${data[key]}`);
     let currDate = incrementDate(parseInt(key));
     let row = `
         <tr>

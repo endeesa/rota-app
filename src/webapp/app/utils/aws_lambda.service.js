@@ -21,7 +21,7 @@ function queryStringBuilder(params){
         result += `${key}=${params[key]}&`;
     }
 
-    return result;
+    return result.slice(0,-1);
 }
 
 
@@ -37,17 +37,19 @@ export function MakeAsyncGetRequest(endpoint, params, key){
     if( !localStorage.getItem('fullSchedule')){
         http.send();
     }else{
-        return localStorage.getItem('fullSchedule');
+        console.log('Local storage response: ', localStorage.getItem('fullSchedule') );
+        return JSON.parse( localStorage.getItem('fullSchedule') );
     }
     
 
     // http.addEventListener("readystatechange", processRequest, false);
     http.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
+            console.log('Api response: ', http.responseText);
             const response = JSON.parse(http.responseText);
-          
+            
             localStorage.setItem('fullSchedule', JSON.stringify(response));
-            return JSON.stringify(response)
+            return response;
         }
     }
 }

@@ -1,4 +1,4 @@
-export const CreateRosterTemplate = (model) => {
+export const CreateRosterTemplate = () => {
     return`
     <main>
     <h1>Getting started</h1>

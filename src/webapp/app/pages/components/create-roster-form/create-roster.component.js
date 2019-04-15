@@ -2,12 +2,10 @@ import "./create-roster.css";
 import { CreateRosterTemplate } from "./create-roster.template";
 
 export class CreateRosterComponent {
-  constructor(model) {
-    this.state = model;
-  }
+  constructor() { }
 
   render() {
-    return CreateRosterTemplate(this.state);
+    return CreateRosterTemplate();
   }
 }
 
@@ -21,10 +19,6 @@ if (document.readyState !== "loading") {
 }
 
 function addEventListener$() {
-
-  document.getElementById("generate-rooster").addEventListener("click", () => {
-    console.log(getFormValue());
-  });
 
   document.getElementById("staff-input-add").addEventListener("click", ()=>{
       addInputToForm("staff-input-div", "staff-input");
@@ -40,7 +34,7 @@ function getInputCollections(elementId) {
   return Array.from(sections);
 }
 
-function getFormValue() {
+export function getFormValue() {
   const span = document.getElementById("span").value;
   const sectionNames = getInputCollections("section-input");
   const staffNmes = getInputCollections("staff-input");

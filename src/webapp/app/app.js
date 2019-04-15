@@ -4,66 +4,26 @@ import { AppTemplate } from "./app.template";
 import "./shared/global.css";
 import { MakeAsyncGetRequest } from "./utils/aws_lambda.service";
 import { RosterController } from "./pages/rooster-container/rooster.controller";
-import { CreateRosterComponent } from "./pages/components/create-roster-form/create-roster.component";
+import { CreateRosterComponent, getFormValue } from "./pages/components/create-roster-form/create-roster.component";
 
 // Initialise app container
 const createApp = () => {
   const appRoot = document.querySelector("#root");
-  const initState = {
-    appName: "Rota App"
-  };
-
-  // User inputs - mocks
-  // Todo: Read values from DOM
-  const spanInDays = 30;
-  const workforce = {
-    1: "Dr M Doe",
-    2: "Dr P Davies",
-    3: "Dr M Patison",
-    4: "Dr M Rian",
-    5: "Dr M Lei"
-  };
-  const departments = {
-    1: "Casualty",
-    2: "Maternity",
-    3: "Wards"
-  };
-
+  const state = {};
   try {
-    appRoot.innerHTML = AppTemplate(initState);
+    appRoot.innerHTML = AppTemplate(state);
   } catch (error) {
     console.error("Failed to initialise app: ", error);
   }
 
-  // Todo: Move to own container!
-  const schedule = MakeAsyncGetRequest(
-    "https://3ttpf1otke.execute-api.us-west-2.amazonaws.com/qa/rota_geb_roster_api",
-    {
-      span: 15,
-      sections:3 ,
-      staff: 5
-    },
-    "T7Cti60Nhf8ZT6A9yJYbq2vtVTH5FRjM2uUexJMz"
-  );
-
-  // Inject other page components
-  document.getElementById("roster-container").innerHTML += RosterController({
-    data: JSON.parse(schedule),
-    rawInputs: {
-      span: spanInDays,
-      staff: workforce,
-      sections: departments
-    }
-  });
-
-  const form = new CreateRosterComponent(schedule);
+  const form = new CreateRosterComponent();
   document.getElementById("main-content").innerHTML += form.render();
-
-
 }
 
 /**********************Initialise application************************ */
 createApp();
+
+/******Post render************** */ 
 
 if (document.readyState !== "loading") {
   // alert('document is already ready, just execute code here');
@@ -76,23 +36,72 @@ if (document.readyState !== "loading") {
   });
 }
 
+function generateDictFromArr(arr){
+  const dict = {};
+  for(let i in arr){
+    dict[i] = arr[i];
+  }
+  console.warn('dict tranformed: ', dict);
+  return dict;
+}
+
+function renderRoster(schedule, formValues){
+    let apiData;
+    const workforce = generateDictFromArr(formValues.staff);
+    const departments = generateDictFromArr(formValues.sections);
+    try {
+      apiData = schedule;
+    } catch (error) {
+      console.log('Error parsing JSON: ', error);
+      return null;
+    }
+
+    document.getElementById("roster-container").innerHTML += RosterController({
+      data: schedule,
+      rawInputs: {
+        span: parseInt(formValues.spanIndays),
+        staff: workforce,
+        sections: departments
+      }
+    });
+
+
+    const formContainer = document.getElementById("main-content");
+    const rosterContainer = document.getElementById("roster-container");
+    // Export pdf btn
+    document.getElementById("export_to_pdf").addEventListener("click", () => {
+      alert("Starting pdf export...");
+    });
+  
+    // create another roster
+    document.getElementById("create-another").addEventListener("click", () => {
+      formContainer.style.display = "initial";
+      rosterContainer.style.display = "none";
+    });
+  
+}
+
+
 // Event hanlders
 function addEventListeners() {
   const formContainer = document.getElementById("main-content");
   const rosterContainer = document.getElementById("roster-container");
-  // Export pdf btn
-  document.getElementById("export_to_pdf").addEventListener("click", () => {
-    alert("Starting pdf export...");
-  });
 
-  // create another roster
-  document.getElementById("create-another").addEventListener("click", () => {
-    formContainer.style.display = "initial";
-    rosterContainer.style.display = "none";
-  });
-
-  //Show full schedule
+  // Generate new roster if DNE
   document.getElementById("generate-rooster").addEventListener("click", () => {
+    const formVal = getFormValue();
+    const schedule = MakeAsyncGetRequest(
+      "https://3ttpf1otke.execute-api.us-west-2.amazonaws.com/qa/rota_geb_roster_api",
+      {
+        span: formVal.spanIndays,
+        sections:formVal.sections.length,
+        staff: formVal.staff.length
+      },
+      "T7Cti60Nhf8ZT6A9yJYbq2vtVTH5FRjM2uUexJMz"
+    );
+
+    renderRoster(schedule, formVal);
+
     formContainer.style.display = "none";
     rosterContainer.style.display = "initial";
   });
