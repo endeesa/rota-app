@@ -68,7 +68,6 @@ const createTableColumns = (sectionsMap)=>{
   for(let k in sectionsMap){
     if(k) tableCols += `<th>${sectionsMap[k]}</th>`;
   }
-  console.warn('Table cols: ', tableCols);
   return tableCols;
 }
 
@@ -95,7 +94,6 @@ function getDataCells(rowGroup,names){
   for(let i in rowGroup){
     rowCells += `<td>${names[ rowGroup[i] ]}</td>`
   }
-  console.log('row cells', rowCells);
   return rowCells;
 }
 

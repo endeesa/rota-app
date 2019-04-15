@@ -4,6 +4,8 @@
   border-radius: 4em;
   text-align: center;
   font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  max-width: 100vw;
+  overflow-x: auto;
 }
 
 #calender-view {
@@ -19,6 +21,9 @@
   padding: 2.5em;
   border-radius: 1.5em;
   overflow-x: auto;
+}
+table{
+  width: 100%;
 }
 
 th{
