@@ -14,19 +14,29 @@
 // }
 // var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 
+function queryStringBuilder(params){
+    let result = '';
+
+    for(let key in params){
+        result += `${key}=${params[key]}&`;
+    }
+
+    return result;
+}
 
 
 // HTTP Helpers
-export function MakeAsyncGetRequest(endpoint, key, responseContainerId){
+export function MakeAsyncGetRequest(endpoint, params, key){
     const http = new XMLHttpRequest();
-    http.open('GET', endpoint);
+    const queryStringParams = queryStringBuilder(params);
+    const url = `${endpoint}?${queryStringParams}`;
+    console.log('AWS lambda service caller - Check url: ', url);
+    http.open('GET', url);
     // http.setRequestHeader('x-api-key', key);
     // http.setRequestHeader('Access-Control-Allow-Origin', '*');
     if( !localStorage.getItem('fullSchedule')){
         http.send();
     }else{
-        // const el = document.getElementById(responseContainerId);
-        // el.innerText = localStorage.getItem('fullSchedule');
         return localStorage.getItem('fullSchedule');
     }
     
@@ -34,13 +44,9 @@ export function MakeAsyncGetRequest(endpoint, key, responseContainerId){
     // http.addEventListener("readystatechange", processRequest, false);
     http.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
-            // time to partay!!!
             const response = JSON.parse(http.responseText);
-            console.log(response);
+          
             localStorage.setItem('fullSchedule', JSON.stringify(response));
-            
-            // const el = document.getElementById(responseContainerId);
-            // el.innerText = JSON.stringify(response, null, 4);
             return JSON.stringify(response)
         }
     }
