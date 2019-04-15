@@ -12,6 +12,7 @@ const createApp = () => {
   const state = {};
   try {
     appRoot.innerHTML = AppTemplate(state);
+    // localStorage.clear()
   } catch (error) {
     console.error("Failed to initialise app: ", error);
   }
@@ -35,6 +36,7 @@ if (document.readyState !== "loading") {
     await addEventListeners();
   });
 }
+
 
 function generateDictFromArr(arr){
   const dict = {};
