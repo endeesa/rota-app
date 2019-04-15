@@ -117,8 +117,8 @@ function addEventListeners() {
   });
 
   // Listen to cell events
-  document.querySelectorAll("#shedule-table td").forEach(e =>
-    e.addEventListener("click", function(event) {
+  document.querySelectorAll("#shedule-table td").forEach(cell =>
+    cell.addEventListener("click", function(event) {
       // Here, `this` refers to the element the event was hooked on
       alert(`Clicked: ${event.target.innerHTML}`);
     })

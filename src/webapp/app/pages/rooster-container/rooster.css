@@ -21,11 +21,6 @@
   overflow-x: auto;
 }
 
-
-table{
-  width: 100%;
-}
-
 th{
   background-color: purple;
   color: white;
@@ -36,7 +31,7 @@ th{
 
  td{
    padding: 1.5em;
-   transition: all 80ms ease-in;
+   transition: all 150ms ease-in;
  }
 
 tr:nth-child(even) {
