@@ -47,11 +47,25 @@ function generateDictFromArr(arr){
   return dict;
 }
 
+
+function createOrUpdateState(state){
+  try {
+    localStorage.setItem('state', state);
+  } catch (error) {
+    throw new Error(`Failed to add state to local storage: ${state}.`)
+  }
+}
+
 function renderRoster(schedule, formValues){
     const workforce = generateDictFromArr(formValues.staff);
     const departments = generateDictFromArr(formValues.sections);
+    const state = {
+      fullschedule : schedule,
+      staffNames: workforce,
+      sectionNames: departments 
+    };
+    createOrUpdateState(JSON.stringify(state));
 
-    console.log('Render roster schedule: ', schedule);
     document.getElementById("roster-container").innerHTML += RosterController({
       data: schedule,
       rawInputs: {
@@ -77,6 +91,9 @@ function renderRoster(schedule, formValues){
   
 }
 
+function isNullOrEmpty(val){
+  return val == null || val == '' || Number(val) === 0? true : false;
+}
 
 // Event hanlders
 function addEventListeners() {
@@ -86,6 +103,14 @@ function addEventListeners() {
   // Generate new roster if DNE
   document.getElementById("generate-rooster").addEventListener("click",async () => {
     const formVal = getFormValue();
+    if(
+      isNullOrEmpty(formVal.spanIndays) ||
+      formVal.sections.length === 0 ||
+      formVal.staff.length == 0
+    ){ 
+      document.getElementById('form-err-msg').innerText = "You need to fill in all fields.";
+      return null;
+    }
     const apiResponse = await MakeAsyncGetRequest(
       "https://3ttpf1otke.execute-api.us-west-2.amazonaws.com/qa/rota_geb_roster_api",
       {
