@@ -3,7 +3,7 @@ import { RoosterTemplate } from "./rooster.template";
 
 export const RosterController = props => {
   // Process inputs and events?
-
+  console.log('calling roster');
   //then render
   return render(props);
 };

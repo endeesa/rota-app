@@ -1,6 +1,6 @@
 export const RoosterTemplate = model => {
   // Receives full schedule from parent container
-  console.log(`Roster ${typeof(model)} model: ${model.data}`);
+  console.log(`Roster ${typeof(model)} model: ${model.keys}`);
   const today = new Date();
   const employeeNamesMap = model.rawInputs.staff;
   const scheduleRows = createScheduleRows(model.data, employeeNamesMap);

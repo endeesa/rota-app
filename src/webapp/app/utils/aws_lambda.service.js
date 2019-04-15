@@ -34,22 +34,27 @@ export function MakeAsyncGetRequest(endpoint, params, key){
     http.open('GET', url);
     // http.setRequestHeader('x-api-key', key);
     // http.setRequestHeader('Access-Control-Allow-Origin', '*');
-    if( !localStorage.getItem('fullSchedule')){
-        http.send();
-    }else{
-        console.log('Local storage response: ', localStorage.getItem('fullSchedule') );
-        return JSON.parse( localStorage.getItem('fullSchedule') );
+    // Object.keys(localDB).length != parseInt(params.span)
+    const localDB = localStorage.getItem('fullSchedule');
+    if( localDB){
+        console.log('Local storage response: ', localDB );
+        return new Promise( (resolve, reject)=>{
+            resolve(JSON.parse( localDB ));
+        });
     }
     
-
+    http.send();
     // http.addEventListener("readystatechange", processRequest, false);
     http.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
-            console.log('Api response: ', http.responseText);
+            
             const response = JSON.parse(http.responseText);
             
             localStorage.setItem('fullSchedule', JSON.stringify(response));
-            return response;
+            console.log('Remote Api response: ', response);
+            return new Promise( (resolve, reject)=>{
+                resolve(JSON.parse( response ));
+            });
         }
     }
 }

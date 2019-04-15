@@ -29,10 +29,10 @@ if (document.readyState !== "loading") {
   // alert('document is already ready, just execute code here');
   addEventListeners();
 } else {
-  document.addEventListener("DOMContentLoaded", function() {
+  document.addEventListener("DOMContentLoaded", async function() {
     // alert("document was not ready, place code here");
 
-    addEventListeners();
+    await addEventListeners();
   });
 }
 
@@ -46,16 +46,10 @@ function generateDictFromArr(arr){
 }
 
 function renderRoster(schedule, formValues){
-    let apiData;
     const workforce = generateDictFromArr(formValues.staff);
     const departments = generateDictFromArr(formValues.sections);
-    try {
-      apiData = schedule;
-    } catch (error) {
-      console.log('Error parsing JSON: ', error);
-      return null;
-    }
 
+    console.log('Render roster schedule: ', schedule);
     document.getElementById("roster-container").innerHTML += RosterController({
       data: schedule,
       rawInputs: {
@@ -88,9 +82,9 @@ function addEventListeners() {
   const rosterContainer = document.getElementById("roster-container");
 
   // Generate new roster if DNE
-  document.getElementById("generate-rooster").addEventListener("click", () => {
+  document.getElementById("generate-rooster").addEventListener("click",async () => {
     const formVal = getFormValue();
-    const schedule = MakeAsyncGetRequest(
+    const apiResponse = await MakeAsyncGetRequest(
       "https://3ttpf1otke.execute-api.us-west-2.amazonaws.com/qa/rota_geb_roster_api",
       {
         span: formVal.spanIndays,
@@ -98,12 +92,15 @@ function addEventListeners() {
         staff: formVal.staff.length
       },
       "T7Cti60Nhf8ZT6A9yJYbq2vtVTH5FRjM2uUexJMz"
-    );
+    )
 
-    renderRoster(schedule, formVal);
+    console.log("Promise method; ", apiResponse)
+    console.log("Passed form data: ", formVal);
+    renderRoster(apiResponse, formVal);
 
     formContainer.style.display = "none";
     rosterContainer.style.display = "initial";
+
   });
 
   // Listen to cell events
