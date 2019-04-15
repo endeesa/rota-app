@@ -13,9 +13,8 @@ export const RoosterTemplate = (model) => {
 
         <section id="calender-view">
             <table id="shedule-table">
-                <tr>
-                  <th>Day</th>
-                  ${tableColumns}
+                <tr id="schedule-headings">
+                  ${ tableColumns == undefined? "":tableColumns}
                 </tr>
                 ${scheduleRows}
             </table>
@@ -65,10 +64,8 @@ export const RoosterTemplate = (model) => {
 
 // Display/Presentation logic
 const createTableColumns = (sectionsMap)=>{
-  console.log('sections map: ', sectionsMap);
-  let tableCols = "";
+  let tableCols = "<th>Day</th>";
   for(let k in sectionsMap){
-    console.log(`Key: ${k}, Value: ${sectionsMap[k]}`);
     if(k) tableCols += `<th>${sectionsMap[k]}</th>`;
   }
   console.warn('Table cols: ', tableCols);
@@ -80,19 +77,27 @@ const createTableColumns = (sectionsMap)=>{
 const createScheduleRows = (data, names) => {
   let rows = "";
   for (let key in data) {
-    let currDate = incrementDate(parseInt(key)-1);
+    let currDate = incrementDate(parseInt(key));
+    let rowDataCells = getDataCells(data[key], names); 
     let row = `
         <tr>
             <td>${currDate}</td>
-            <td>${names[data[key][0]]}</td>
-            <td>${names[data[key][1]]}</td>
-            <td>${names[data[key][2]]}</td>
+            ${rowDataCells}
         </tr>
         `;
     rows += row;
   }
   return rows;
 };
+
+function getDataCells(rowGroup,names){
+  let rowCells = "";
+  for(let i in rowGroup){
+    rowCells += `<td>${names[ rowGroup[i] ]}</td>`
+  }
+  console.log('row cells', rowCells);
+  return rowCells;
+}
 
 function incrementDate(incrementBy) {
   const today = new Date();
