@@ -47,7 +47,7 @@ export function MakeAsyncGetRequest(endpoint, params, key){
                
                 resolve(response);
             }else{
-                reject(`Sever error: Data not available at this moment. ${http.response}`);
+                reject(`Sever error - Please try again.`);
             }
         }
 

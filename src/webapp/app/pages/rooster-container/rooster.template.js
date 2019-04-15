@@ -1,24 +1,22 @@
 export const RoosterTemplate = (model) => {
-  // Receives full schedule from parent container
-  console.log(`Roster ${typeof(model)} model: ${model.data}`);
   const today = new Date();
   const employeeNamesMap = model.rawInputs.staff;
+  const tableColumns = createTableColumns(model.rawInputs.sections);
   const scheduleRows = createScheduleRows(model.data, employeeNamesMap);
 
     return `
     <article class="content-wrapper">
         <h1 class="heading mb-1" onclick="createStepper()">Your ${model.rawInputs.span} day roster</h1>
         <section id="daily-view">
-            Starting from today : ${today}
+            Generated on : ${today}
         </section>
 
         <section id="calender-view">
             <table id="shedule-table">
                 <tr>
-                <th>Day</th>
-                <th>CASUALTY</th>
-                <th>MATERNITY</th>
-                <th>WARDS</th></tr>
+                  <th>Day</th>
+                  ${tableColumns}
+                </tr>
                 ${scheduleRows}
             </table>
             
@@ -66,15 +64,23 @@ export const RoosterTemplate = (model) => {
 };
 
 // Display/Presentation logic
-export const createStepper = () => {
-  alert('HHHHHH!!!!!!!!');
-};
+const createTableColumns = (sectionsMap)=>{
+  console.log('sections map: ', sectionsMap);
+  let tableCols = "";
+  for(let k in sectionsMap){
+    console.log(`Key: ${k}, Value: ${sectionsMap[k]}`);
+    if(k) tableCols += `<th>${sectionsMap[k]}</th>`;
+  }
+  console.warn('Table cols: ', tableCols);
+  return tableCols;
+}
+
+
 
 const createScheduleRows = (data, names) => {
   let rows = "";
   for (let key in data) {
-    // console.log(`Key: ${key}, Value: ${data[key]}`);
-    let currDate = incrementDate(parseInt(key));
+    let currDate = incrementDate(parseInt(key)-1);
     let row = `
         <tr>
             <td>${currDate}</td>
