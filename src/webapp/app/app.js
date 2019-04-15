@@ -1,5 +1,6 @@
 import "./app.css";
 import { AppTemplate } from "./app.template";
+import * as jsPDF from 'jspdf'
 
 import "./shared/global.css";
 import { MakeAsyncGetRequest } from "./utils/aws_lambda.service";
@@ -65,6 +66,11 @@ function renderRoster(schedule, formValues){
     const rosterContainer = document.getElementById("roster-container");
     // Export pdf btn
     document.getElementById("export_to_pdf").addEventListener("click", () => {
+      const doc = new jsPDF(); 
+      doc.fromHTML( document.getElementById('shedule-table') )
+      doc.save('roster.pdf');
+      
+
       alert("Starting pdf export...");
     });
   
