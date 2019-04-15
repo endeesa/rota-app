@@ -39,7 +39,7 @@ if (document.readyState !== "loading") {
 function generateDictFromArr(arr){
   const dict = {};
   for(let i in arr){
-    dict[i] = arr[i];
+    dict[ parseInt(i) + 1 ] = arr[i];
   }
   console.warn('dict tranformed: ', dict);
   return dict;
@@ -93,14 +93,11 @@ function addEventListeners() {
       },
       "T7Cti60Nhf8ZT6A9yJYbq2vtVTH5FRjM2uUexJMz"
     )
-
-    console.log("Promise method; ", apiResponse)
     console.log("Passed form data: ", formVal);
     renderRoster(apiResponse, formVal);
 
     formContainer.style.display = "none";
     rosterContainer.style.display = "initial";
-
   });
 
   // Listen to cell events

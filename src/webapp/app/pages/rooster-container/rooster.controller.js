@@ -3,15 +3,15 @@ import { RoosterTemplate } from "./rooster.template";
 
 export const RosterController = props => {
   // Process inputs and events?
-  console.log('calling roster');
+  console.log('Rost controller data', props)
   //then render
   return render(props);
 };
 
 function render(model) {
   try {
+    console.log('Received from parent: ', model);
     const result = RoosterTemplate(model);
-
     return result;
   } catch (err) {
     alert(err);
@@ -19,19 +19,3 @@ function render(model) {
   }
 }
 
-
-
-// if (document.readyState !== "loading") {
-//   alert(document.getElementById('export_to_pdf'));
-  
-//   document.getElementById('export_to_pdf').addEventListener('click', ()=>{
-//     alert('I have been triggere');
-//   })
-
-// } else {
-//   document.addEventListener("DOMContentLoaded", function() {
-//     alert("document was not ready, place code here");
-
-//     // addEventListeners();
-//   });
-// }

@@ -53,7 +53,7 @@ export function MakeAsyncGetRequest(endpoint, params, key){
             localStorage.setItem('fullSchedule', JSON.stringify(response));
             console.log('Remote Api response: ', response);
             return new Promise( (resolve, reject)=>{
-                resolve(JSON.parse( response ));
+                resolve( response );
             });
         }
     }

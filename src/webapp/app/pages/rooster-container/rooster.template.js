@@ -1,6 +1,6 @@
-export const RoosterTemplate = model => {
+export const RoosterTemplate = (model) => {
   // Receives full schedule from parent container
-  console.log(`Roster ${typeof(model)} model: ${model.keys}`);
+  console.log(`Roster ${typeof(model)} model: ${model.data}`);
   const today = new Date();
   const employeeNamesMap = model.rawInputs.staff;
   const scheduleRows = createScheduleRows(model.data, employeeNamesMap);
@@ -63,12 +63,6 @@ export const RoosterTemplate = model => {
     <!--End stepper-->
     </div>
     `;
-
-  // const result = new Promise((resolve, reject) => {
-  //   resolve(markup);
-  // });
-
-  // return markup;
 };
 
 // Display/Presentation logic
@@ -79,7 +73,7 @@ export const createStepper = () => {
 const createScheduleRows = (data, names) => {
   let rows = "";
   for (let key in data) {
-    console.log(`Key: ${key}, Value: ${data[key]}`);
+    // console.log(`Key: ${key}, Value: ${data[key]}`);
     let currDate = incrementDate(parseInt(key));
     let row = `
         <tr>
