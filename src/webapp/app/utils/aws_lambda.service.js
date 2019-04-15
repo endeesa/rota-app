@@ -35,26 +35,24 @@ export function MakeAsyncGetRequest(endpoint, params, key){
     // http.setRequestHeader('x-api-key', key);
     // http.setRequestHeader('Access-Control-Allow-Origin', '*');
     // Object.keys(localDB).length != parseInt(params.span)
-    const localDB = localStorage.getItem('fullSchedule');
-    if( localDB){
-        console.log('Local storage response: ', localDB );
-        return new Promise( (resolve, reject)=>{
-            resolve(JSON.parse( localDB ));
-        });
-    }
-    
     http.send();
-    // http.addEventListener("readystatechange", processRequest, false);
-    http.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-            
-            const response = JSON.parse(http.responseText);
-            
-            localStorage.setItem('fullSchedule', JSON.stringify(response));
-            console.log('Remote Api response: ', response);
-            return new Promise( (resolve, reject)=>{
-                resolve( response );
-            });
+
+    return new Promise( (resolve, reject)=> {
+
+        http.onreadystatechange = function() {
+
+            if (this.status == 200) {
+                const response = JSON.parse(http.responseText);
+                console.log('Remote Api response: ', response);
+               
+                resolve(response);
+            }else{
+                reject(`Sever error: Data not available at this moment. ${http.response}`);
+            }
         }
-    }
+
+    });
+
+
+
 }

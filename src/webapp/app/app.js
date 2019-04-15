@@ -30,10 +30,9 @@ if (document.readyState !== "loading") {
   // alert('document is already ready, just execute code here');
   addEventListeners();
 } else {
-  document.addEventListener("DOMContentLoaded", async function() {
+  document.addEventListener("DOMContentLoaded", function() {
     // alert("document was not ready, place code here");
-
-    await addEventListeners();
+    addEventListeners();
   });
 }
 
@@ -43,28 +42,14 @@ function generateDictFromArr(arr){
   for(let i in arr){
     dict[ parseInt(i) + 1 ] = arr[i];
   }
-  console.warn('dict tranformed: ', dict);
   return dict;
 }
 
 
-function createOrUpdateState(state){
-  try {
-    localStorage.setItem('state', state);
-  } catch (error) {
-    throw new Error(`Failed to add state to local storage: ${state}.`)
-  }
-}
-
 function renderRoster(schedule, formValues){
+    console.log('render roster called with: ', schedule);
     const workforce = generateDictFromArr(formValues.staff);
     const departments = generateDictFromArr(formValues.sections);
-    const state = {
-      fullschedule : schedule,
-      staffNames: workforce,
-      sectionNames: departments 
-    };
-    createOrUpdateState(JSON.stringify(state));
 
     document.getElementById("roster-container").innerHTML += RosterController({
       data: schedule,
@@ -111,7 +96,7 @@ function addEventListeners() {
       document.getElementById('form-err-msg').innerText = "You need to fill in all fields.";
       return null;
     }
-    const apiResponse = await MakeAsyncGetRequest(
+    const apiResponse = MakeAsyncGetRequest(
       "https://3ttpf1otke.execute-api.us-west-2.amazonaws.com/qa/rota_geb_roster_api",
       {
         span: formVal.spanIndays,
@@ -120,11 +105,15 @@ function addEventListeners() {
       },
       "T7Cti60Nhf8ZT6A9yJYbq2vtVTH5FRjM2uUexJMz"
     )
-    console.log("Passed form data: ", formVal);
-    renderRoster(apiResponse, formVal);
 
-    formContainer.style.display = "none";
-    rosterContainer.style.display = "initial";
+    apiResponse
+      .then( data =>{
+        renderRoster(data, formVal);
+        formContainer.style.display = "none";
+        rosterContainer.style.display = "initial";
+      })
+      .catch( error => alert(error));
+  
   });
 
   // Listen to cell events
