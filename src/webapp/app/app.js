@@ -1,11 +1,15 @@
 import "./app.css";
 import { AppTemplate } from "./app.template";
-import * as jsPDF from 'jspdf'
+import * as jsPDF from "jspdf";
 
 import "./shared/global.css";
+
 import { MakeAsyncGetRequest } from "./utils/aws_lambda.service";
 import { RosterController } from "./pages/rooster-container/rooster.controller";
-import { CreateRosterComponent, getFormValue } from "./pages/components/create-roster-form/create-roster.component";
+import {
+  CreateRosterComponent,
+  getFormValue
+} from "./pages/components/create-roster-form/create-roster.component";
 
 // Initialise app container
 const createApp = () => {
@@ -20,12 +24,12 @@ const createApp = () => {
 
   const form = new CreateRosterComponent();
   document.getElementById("main-content").innerHTML += form.render();
-}
+};
 
 /**********************Initialise application************************ */
 createApp();
 
-/******Post render************** */ 
+/******Post render************** */
 
 if (document.readyState !== "loading") {
   // alert('document is already ready, just execute code here');
@@ -37,53 +41,48 @@ if (document.readyState !== "loading") {
   });
 }
 
-
-function generateDictFromArr(arr){
+function generateDictFromArr(arr) {
   const dict = {};
-  for(let i in arr){
-    dict[ parseInt(i) + 1 ] = arr[i];
+  for (let i in arr) {
+    dict[parseInt(i) + 1] = arr[i];
   }
   return dict;
 }
 
+function renderRoster(schedule, formValues) {
+  console.log("render roster called with: ", schedule);
+  const workforce = generateDictFromArr(formValues.staff);
+  const departments = generateDictFromArr(formValues.sections);
 
-function renderRoster(schedule, formValues){
-    console.log('render roster called with: ', schedule);
-    const workforce = generateDictFromArr(formValues.staff);
-    const departments = generateDictFromArr(formValues.sections);
+  document.getElementById("roster-container").innerHTML += RosterController({
+    data: schedule,
+    rawInputs: {
+      span: parseInt(formValues.spanIndays),
+      staff: workforce,
+      sections: departments
+    }
+  });
 
-    document.getElementById("roster-container").innerHTML += RosterController({
-      data: schedule,
-      rawInputs: {
-        span: parseInt(formValues.spanIndays),
-        staff: workforce,
-        sections: departments
-      }
-    });
+  const formContainer = document.getElementById("main-content");
+  const rosterContainer = document.getElementById("roster-container");
+  // Export pdf btn
+  document.getElementById("export_to_pdf").addEventListener("click", () => {
+    const doc = new jsPDF();
+    doc.fromHTML(document.getElementById("shedule-table"));
+    doc.save("roster.pdf");
 
+    alert("Starting pdf export...");
+  });
 
-    const formContainer = document.getElementById("main-content");
-    const rosterContainer = document.getElementById("roster-container");
-    // Export pdf btn
-    document.getElementById("export_to_pdf").addEventListener("click", () => {
-      const doc = new jsPDF(); 
-      doc.fromHTML( document.getElementById('shedule-table') )
-      doc.save('roster.pdf');
-      
-
-      alert("Starting pdf export...");
-    });
-  
-    // create another roster
-    document.getElementById("create-another").addEventListener("click", () => {
-      formContainer.style.display = "initial";
-      rosterContainer.style.display = "none";
-    });
-  
+  // create another roster
+  document.getElementById("create-another").addEventListener("click", () => {
+    formContainer.style.display = "initial";
+    rosterContainer.style.display = "none";
+  });
 }
 
-function isNullOrEmpty(val){
-  return val == null || val == '' || Number(val) === 0? true : false;
+function isNullOrEmpty(val) {
+  return val == null || val == "" || Number(val) === 0 ? true : false;
 }
 
 // Event hanlders
@@ -92,35 +91,37 @@ function addEventListeners() {
   const rosterContainer = document.getElementById("roster-container");
 
   // Generate new roster if DNE
-  document.getElementById("generate-rooster").addEventListener("click",async () => {
-    const formVal = getFormValue();
-    if(
-      isNullOrEmpty(formVal.spanIndays) ||
-      formVal.sections.length === 0 ||
-      formVal.staff.length == 0
-    ){ 
-      document.getElementById('form-err-msg').innerText = "You need to fill in all fields.";
-      return null;
-    }
-    const apiResponse = MakeAsyncGetRequest(
-      "https://3ttpf1otke.execute-api.us-west-2.amazonaws.com/qa/rota_geb_roster_api",
-      {
-        span: formVal.spanIndays,
-        sections:formVal.sections.length,
-        staff: formVal.staff.length
-      },
-      "T7Cti60Nhf8ZT6A9yJYbq2vtVTH5FRjM2uUexJMz"
-    )
+  document
+    .getElementById("generate-rooster")
+    .addEventListener("click", async () => {
+      const formVal = getFormValue();
+      if (
+        isNullOrEmpty(formVal.spanIndays) ||
+        formVal.sections.length === 0 ||
+        formVal.staff.length == 0
+      ) {
+        document.getElementById("form-err-msg").innerText =
+          "You need to fill in all fields.";
+        return null;
+      }
+      const apiResponse = MakeAsyncGetRequest(
+        "https://3ttpf1otke.execute-api.us-west-2.amazonaws.com/qa/rota_geb_roster_api",
+        {
+          span: formVal.spanIndays,
+          sections: formVal.sections.length,
+          staff: formVal.staff.length
+        },
+        "T7Cti60Nhf8ZT6A9yJYbq2vtVTH5FRjM2uUexJMz"
+      );
 
-    apiResponse
-      .then( data =>{
-        renderRoster(data, formVal);
-        formContainer.style.display = "none";
-        rosterContainer.style.display = "initial";
-      })
-      .catch( error => alert(error));
-  
-  });
+      apiResponse
+        .then(data => {
+          renderRoster(data, formVal);
+          formContainer.style.display = "none";
+          rosterContainer.style.display = "initial";
+        })
+        .catch(error => alert(error));
+    });
 
   // Listen to cell events
   document.querySelectorAll("#shedule-table td").forEach(cell =>
