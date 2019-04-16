@@ -11,4 +11,12 @@
       "footer footer footer footer footer footer";
     grid-gap: 5px;
   }
+
+  #staff-input-div{
+    width: 100%;
+  }
+
+  .staff-input, .section-input{
+    width: 80%;
+  }
 }

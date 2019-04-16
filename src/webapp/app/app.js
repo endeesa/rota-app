@@ -1,15 +1,16 @@
-import "./app.css";
-import { AppTemplate } from "./app.template";
 import * as jsPDF from "jspdf";
 
-import "./shared/global.css";
+import "./app.css";
+import { AppTemplate } from "./app.template";
 
+import "./shared/global.css";
 import { MakeAsyncGetRequest } from "./utils/aws_lambda.service";
 import { RosterController } from "./pages/rooster-container/rooster.controller";
 import {
   CreateRosterComponent,
   getFormValue
 } from "./pages/components/create-roster-form/create-roster.component";
+import { SimpleLoaderComponent } from "./pages/components/simple-loader/loader.component";
 
 // Initialise app container
 const createApp = () => {
@@ -24,6 +25,8 @@ const createApp = () => {
 
   const form = new CreateRosterComponent();
   document.getElementById("main-content").innerHTML += form.render();
+
+  document.getElementById("footer").innerHTML += SimpleLoaderComponent();
 };
 
 /**********************Initialise application************************ */

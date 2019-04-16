@@ -31,7 +31,7 @@ export const AppTemplate = (props) => {
         <section id="roster-container" class="roster-container shadow-md">
         </section>
 
-        <section class="footer">
+        <section class="footer" id="footer">
             &copy <a href="https:/twitter.com/Banzyme2">Peculia.dev</a>
         </section>
 
