@@ -1,5 +1,9 @@
 import * as jsPDF from "jspdf";
-import { MakeAsyncGetRequest } from "./../shared/index";
+import {
+  MakeAsyncGetRequest,
+  isNullOrEmpty,
+  generateDictFromArr
+} from "./../shared/index";
 
 import { AppTemplate } from "./app.template";
 import {
@@ -9,8 +13,8 @@ import {
   getFormValue
 } from "./components/index";
 
-import "./../shared/styles/global.css";
 import "./app.css";
+import "./../shared/styles/global.css";
 
 // Initialise app container
 const createApp = () => {
@@ -25,12 +29,10 @@ const createApp = () => {
 
   const form = new CreateRosterComponent();
   document.getElementById("main-content").innerHTML += form.render();
-
   document.getElementById(
     "loader-placeholder"
   ).innerHTML = SimpleLoaderComponent();
 };
-
 /**********************Initialise application************************ */
 createApp();
 
@@ -43,48 +45,12 @@ if (document.readyState !== "loading") {
   });
 }
 
-function renderRoster(schedule, formValues) {
-  console.log("render roster called with: ", schedule);
-  const workforce = generateDictFromArr(formValues.staff);
-  const departments = generateDictFromArr(formValues.sections);
-
-  document.getElementById("roster-container").innerHTML += RosterController({
-    data: schedule,
-    rawInputs: {
-      span: parseInt(formValues.spanIndays),
-      staff: workforce,
-      sections: departments
-    }
-  });
-
-  const formContainer = document.getElementById("main-content");
-  const rosterContainer = document.getElementById("roster-container");
-  // Export pdf btn
-  document.getElementById("export_to_pdf").addEventListener("click", () => {
-    const doc = new jsPDF();
-    doc.fromHTML(document.getElementById("shedule-table"));
-    doc.save("roster.pdf");
-
-    alert("Starting pdf export...");
-  });
-
-  // create another roster
-  document.getElementById("create-another").addEventListener("click", () => {
-    formContainer.style.display = "initial";
-    rosterContainer.style.display = "none";
-  });
-}
-
-function isNullOrEmpty(val) {
-  return val == null || val == "" || Number(val) === 0 ? true : false;
-}
-
 // Event hanlders
 function addEventListeners() {
   const formContainer = document.getElementById("main-content");
   const rosterContainer = document.getElementById("roster-container");
 
-  // Generate new roster if DNE
+  // Generate new roster
   document
     .getElementById("generate-rooster")
     .addEventListener("click", async () => {
@@ -131,4 +97,41 @@ function addEventListeners() {
       alert(`Clicked: ${event.target.innerHTML}`);
     })
   );
+}
+
+// Internal helpers
+function renderRoster(schedule, formValues) {
+  const workforce = generateDictFromArr(formValues.staff);
+  const departments = generateDictFromArr(formValues.sections);
+
+  document.getElementById("roster-container").innerHTML += RosterController({
+    data: schedule,
+    rawInputs: {
+      span: parseInt(formValues.spanIndays),
+      staff: workforce,
+      sections: departments
+    }
+  });
+
+  initialiseRosterContainerBtns();
+}
+
+function initialiseRosterContainerBtns() {
+  const formContainer = document.getElementById("main-content");
+  const rosterContainer = document.getElementById("roster-container");
+
+  //  // create another roster
+  document.getElementById("create-another").addEventListener("click", () => {
+    formContainer.style.display = "initial";
+    rosterContainer.style.display = "none";
+  });
+
+  // Export pdf btn
+  document.getElementById("export_to_pdf").addEventListener("click", () => {
+    const doc = new jsPDF();
+    doc.fromHTML(document.getElementById("shedule-table"));
+    doc.save("roster.pdf");
+
+    alert("Starting pdf export...");
+  });
 }
