@@ -78,6 +78,7 @@ main>h1{
 
 
 #loader-placeholder{
+  display: none;
   max-width: 80%;
   margin: 0 auto;
 }

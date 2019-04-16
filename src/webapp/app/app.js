@@ -97,6 +97,7 @@ function addEventListeners() {
   document
     .getElementById("generate-rooster")
     .addEventListener("click", async () => {
+      document.getElementById("form-err-msg").innerText = null;
       const formVal = getFormValue();
       if (
         isNullOrEmpty(formVal.spanIndays) ||
@@ -107,6 +108,8 @@ function addEventListeners() {
           "You need to fill in all fields.";
         return null;
       }
+
+      document.getElementById("loader-placeholder").style.display = 'initial';
       const apiResponse = MakeAsyncGetRequest(
         "https://3ttpf1otke.execute-api.us-west-2.amazonaws.com/qa/rota_geb_roster_api",
         {
@@ -121,9 +124,14 @@ function addEventListeners() {
         .then(data => {
           renderRoster(data, formVal);
           formContainer.style.display = "none";
+          document.getElementById("loader-placeholder").style.display = 'none';
           rosterContainer.style.display = "initial";
         })
-        .catch(error => alert(error));
+        .catch(error => {
+          document.getElementById("loader-placeholder").style.display = 'none';
+          document.getElementById("form-err-msg").innerText =
+          `${error}`;
+        });
     });
 
   // Listen to cell events
