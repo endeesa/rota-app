@@ -1,16 +1,16 @@
 import * as jsPDF from "jspdf";
+import { MakeAsyncGetRequest } from "./../shared/index";
 
-import "./app.css";
 import { AppTemplate } from "./app.template";
-
-import "./shared/global.css";
-import { MakeAsyncGetRequest } from "./utils/aws_lambda.service";
-import { RosterController } from "./pages/rooster-container/rooster.controller";
 import {
+  RosterController,
+  SimpleLoaderComponent,
   CreateRosterComponent,
   getFormValue
-} from "./pages/components/create-roster-form/create-roster.component";
-import { SimpleLoaderComponent } from "./pages/components/simple-loader/loader.component";
+} from "./components/index";
+
+import "./../shared/styles/global.css";
+import "./app.css";
 
 // Initialise app container
 const createApp = () => {
@@ -26,30 +26,21 @@ const createApp = () => {
   const form = new CreateRosterComponent();
   document.getElementById("main-content").innerHTML += form.render();
 
-  document.getElementById("loader-placeholder").innerHTML = SimpleLoaderComponent();
+  document.getElementById(
+    "loader-placeholder"
+  ).innerHTML = SimpleLoaderComponent();
 };
 
 /**********************Initialise application************************ */
 createApp();
 
 /******Post render************** */
-
 if (document.readyState !== "loading") {
-  // alert('document is already ready, just execute code here');
   addEventListeners();
 } else {
   document.addEventListener("DOMContentLoaded", function() {
-    // alert("document was not ready, place code here");
     addEventListeners();
   });
-}
-
-function generateDictFromArr(arr) {
-  const dict = {};
-  for (let i in arr) {
-    dict[parseInt(i) + 1] = arr[i];
-  }
-  return dict;
 }
 
 function renderRoster(schedule, formValues) {
@@ -109,7 +100,7 @@ function addEventListeners() {
         return null;
       }
 
-      document.getElementById("loader-placeholder").style.display = 'initial';
+      document.getElementById("loader-placeholder").style.display = "initial";
       const apiResponse = MakeAsyncGetRequest(
         "https://3ttpf1otke.execute-api.us-west-2.amazonaws.com/qa/rota_geb_roster_api",
         {
@@ -124,13 +115,12 @@ function addEventListeners() {
         .then(data => {
           renderRoster(data, formVal);
           formContainer.style.display = "none";
-          document.getElementById("loader-placeholder").style.display = 'none';
+          document.getElementById("loader-placeholder").style.display = "none";
           rosterContainer.style.display = "initial";
         })
         .catch(error => {
-          document.getElementById("loader-placeholder").style.display = 'none';
-          document.getElementById("form-err-msg").innerText =
-          `${error}`;
+          document.getElementById("loader-placeholder").style.display = "none";
+          document.getElementById("form-err-msg").innerText = `${error}`;
         });
     });
 
