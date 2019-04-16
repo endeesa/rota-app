@@ -26,7 +26,7 @@ const createApp = () => {
   const form = new CreateRosterComponent();
   document.getElementById("main-content").innerHTML += form.render();
 
-  document.getElementById("footer").innerHTML += SimpleLoaderComponent();
+  document.getElementById("loader-placeholder").innerHTML = SimpleLoaderComponent();
 };
 
 /**********************Initialise application************************ */

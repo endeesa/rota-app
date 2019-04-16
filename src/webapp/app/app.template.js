@@ -25,7 +25,7 @@ export const AppTemplate = (props) => {
 
 
         <section id="main-content" class="main-content shadow-md">
-        ....
+        <div id="loader-placeholder">....</div>
         </section>
 
         <section id="roster-container" class="roster-container shadow-md">

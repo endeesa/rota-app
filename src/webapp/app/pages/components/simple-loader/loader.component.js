@@ -1,9 +1,9 @@
-import loader from './loader.gif';
+import loader from './loader.svg';
 
 export const SimpleLoaderComponent = ()=>{
     return`
     <article class="content-wrapper">
-        <img src="${loader}" alt="Loading..." width=200/>
+        <img class="loader-img" src="${loader}" alt="Loading..."/>
     </article>
     `
 }
