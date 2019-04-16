@@ -139,8 +139,10 @@ function initialiseRosterContainerBtns() {
       {
         html: '#shedule-table',
         theme: 'striped',
-        fillColor: 'purple'
+        headStyles: {fillColor: [155, 89, 182]}
       });
+      let finalY = doc.previousAutoTable.finalY;
+      doc.text("Xxx - x Day Rooster", 15, finalY + 15);
     doc.save("roster.pdf");
   });
 }

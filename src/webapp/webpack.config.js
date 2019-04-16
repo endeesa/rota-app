@@ -4,7 +4,7 @@ module.exports = {
   entry: './app/pages/app.js',
   output: {
     filename: 'bundle.js',
-    path: path.resolve(__dirname, 'public')
+    path: path.resolve(__dirname, 'dist')
   },
 
   module:{
@@ -22,7 +22,7 @@ module.exports = {
         use:[{
            loader: 'file-loader',
            options: {
-            outputPath: path.resolve(__dirname, 'public')
+            outputPath: path.resolve(__dirname, 'dist')
            }
           }
         ]
@@ -31,7 +31,7 @@ module.exports = {
   },
 
   devServer: {
-    contentBase: path.join(__dirname, 'public'),
+    contentBase: path.join(__dirname, 'dist'),
     compress: true,
     port: 9000
   }
