@@ -5,7 +5,6 @@ export function MakeAsyncGetRequest(endpoint, params, key) {
   const url = `${endpoint}?${queryStringParams}`;
   http.open("GET", url);
   // http.setRequestHeader('x-api-key', key);
-  // http.setRequestHeader('Access-Control-Allow-Origin', '*');
   http.send();
 
   return new Promise((resolve, reject) => {
@@ -25,7 +24,6 @@ export function MakeAsyncGetRequest(endpoint, params, key) {
     for (let key in params) {
       result += `${key}=${params[key]}&`;
     }
-
     return result.slice(0, -1);
   }
 }
