@@ -7,7 +7,7 @@ export const CreateRosterTemplate = () => {
         below to generate your new roster.
     </small>
     <form class="centered-form" id="roster-form-container" onsubmit="event.preventDefault();" novalidate>
-        <input class="span" type="text" placeholder="Rooste span in days" id="span" name="span" required/>
+        <input class="span" type="number" placeholder="Rooste span in days" id="span" name="span" required/>
         <hr>
 
         <section id="staff-input-div">
