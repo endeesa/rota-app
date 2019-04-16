@@ -1,11 +1,19 @@
 import * as jsPDF from "jspdf";
+
+import 'jspdf-autotable';
+
+import "./app.css";
+import { AppTemplate } from "./app.template";
+
 import {
   MakeAsyncGetRequest,
   isNullOrEmpty,
   generateDictFromArr
 } from "./../shared/index";
+import "./../shared/styles/global.css";
 
-import { AppTemplate } from "./app.template";
+
+
 import {
   RosterController,
   SimpleLoaderComponent,
@@ -13,8 +21,6 @@ import {
   getFormValue
 } from "./components/index";
 
-import "./app.css";
-import "./../shared/styles/global.css";
 
 // Initialise app container
 const createApp = () => {
@@ -40,7 +46,7 @@ createApp();
 if (document.readyState !== "loading") {
   addEventListeners();
 } else {
-  document.addEventListener("DOMContentLoaded", function() {
+  document.addEventListener("DOMContentLoaded", function () {
     addEventListeners();
   });
 }
@@ -92,7 +98,7 @@ function addEventListeners() {
 
   // Listen to cell events
   document.querySelectorAll("#shedule-table td").forEach(cell =>
-    cell.addEventListener("click", function(event) {
+    cell.addEventListener("click", function (event) {
       // Here, `this` refers to the element the event was hooked on
       alert(`Clicked: ${event.target.innerHTML}`);
     })
@@ -129,9 +135,13 @@ function initialiseRosterContainerBtns() {
   // Export pdf btn
   document.getElementById("export_to_pdf").addEventListener("click", () => {
     const doc = new jsPDF();
-    doc.fromHTML(document.getElementById("shedule-table"));
+    doc.autoTable(
+      {
+        html: '#shedule-table',
+        theme: 'striped',
+        fillColor: 'purple'
+      });
     doc.save("roster.pdf");
-
-    alert("Starting pdf export...");
   });
 }
+
