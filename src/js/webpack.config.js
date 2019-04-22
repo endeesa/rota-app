@@ -1,7 +1,7 @@
 const path = require('path');
 
 module.exports = {
-  entry: './app/app.js',
+  entry: './app/pages/app.js',
   output: {
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'dist')
@@ -19,8 +19,9 @@ module.exports = {
 
       {
         test: /\.(png|svg|jpg|gif)$/,
-        use:[
-          'file-loader'
+        use:[{
+           loader: 'file-loader?name=[name].[ext]'
+          }
         ]
       }
     ]
