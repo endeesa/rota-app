@@ -1,18 +1,9 @@
-import * as jsPDF from "jspdf";
 
-import 'jspdf-autotable';
 
-import "./app.css";
+import "./styles/global.css";
+import "./styles/app.css";
+
 import { AppTemplate } from "./app.template";
-
-import {
-  MakeAsyncGetRequest,
-  isNullOrEmpty,
-  generateDictFromArr
-} from "./../shared/index";
-import "./../shared/styles/global.css";
-
-
 
 import {
   RosterController,
@@ -20,6 +11,15 @@ import {
   CreateRosterComponent,
   getFormValue
 } from "./components/index";
+
+import {
+  MakeAsyncGetRequest,
+  isNullOrEmpty,
+  generateDictFromArr
+} from "./shared/index";
+
+import * as jsPDF from "jspdf";
+import 'jspdf-autotable';
 
 
 // Initialise app container

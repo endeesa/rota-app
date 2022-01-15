@@ -1,2 +1,2 @@
-export * from './helpers/helpers';
-export * from './service-callers/aws_lambda.service';
+export * from './helpers';
+export * from './aws_lambda.service';
