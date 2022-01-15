@@ -17,7 +17,7 @@
     "static webapp"
   ],
   "author": "endeesa (@NdamuleloNemakh)",
-  "license": "Unlicensed",
+  "license": "",
   "devDependencies": {
     "css-loader": "^6.5.1",
     "file-loader": "^6.2.0",
