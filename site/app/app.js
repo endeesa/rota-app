@@ -27,8 +27,8 @@ const createApp = () => {
   const appRoot = document.querySelector("#root");
   const state = {};
   try {
+    localStorage.clear();  // Start with a clean session
     appRoot.innerHTML = AppTemplate(state);
-    // localStorage.clear()
   } catch (error) {
     console.error("Failed to initialise app: ", error);
   }
