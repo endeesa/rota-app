@@ -7,11 +7,11 @@ module.exports = {
     path: path.resolve(__dirname, 'dist')
   },
 
-  module:{
+  module: {
     rules: [
       {
         test: /\.css$/,
-        use:[
+        use: [
           'style-loader',
           'css-loader'
         ]
@@ -19,18 +19,18 @@ module.exports = {
 
       {
         test: /\.(png|svg|jpg|gif)$/,
-        use:[{
-           loader: 'file-loader?name=[name].[ext]'
-          }
+        use: [{
+          loader: 'file-loader?name=[name].[ext]'
+        }
         ]
       }
     ]
   },
 
   devServer: {
-    contentBase: path.join(__dirname, 'dist'),
+    static: { directory: path.join(__dirname, 'dist') },
     compress: true,
     port: 9000
   }
-  
+
 };

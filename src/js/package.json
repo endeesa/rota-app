@@ -1,29 +1,33 @@
 {
-  "name": "Rota-App",
-  "version": "1.0.0-beta",
-  "description": "A simple shift schedular built with vanillaJS",
+  "name": "rota-app",
+  "version": "1.0.1-beta",
+  "description": "A simple shift schedular built with vanilla javascript",
   "private": true,
+  "engines": {
+    "node": ">=0.15"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack --aot",
-    "start:dev": "webpack-dev-server"
+    "prod": "webpack --aot && cd dist && swa start",
+    "dev": "webpack-dev-server --mode=development"
   },
   "keywords": [
     "vanillajs",
-    "webpack"
+    "webpack",
+    "static webapp"
   ],
-  "author": "N Nemakhavhani",
+  "author": "endeesa (@NdamuleloNemakh)",
   "license": "Unlicensed",
   "devDependencies": {
-    "css-loader": "^2.1.1",
-    "file-loader": "^3.0.1",
-    "style-loader": "^0.23.1",
-    "webpack": "^4.30.0",
-    "webpack-cli": "^3.3.0",
-    "webpack-dev-server": "^3.3.1"
+    "css-loader": "^6.5.1",
+    "file-loader": "^6.2.0",
+    "style-loader": "^3.3.1",
+    "webpack": "^5.66.0",
+    "webpack-cli": "^4.9.1",
+    "webpack-dev-server": "^4.7.3"
   },
   "dependencies": {
-    "jspdf": "^1.5.3",
-    "jspdf-autotable": "^3.1.1"
+    "jspdf": "^2.5.0",
+    "jspdf-autotable": "^3.5.23"
   }
 }
