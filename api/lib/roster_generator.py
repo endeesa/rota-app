@@ -1,4 +1,5 @@
 from random import randint
+import traceback
 
 
 class RosterGenerator():
@@ -31,6 +32,7 @@ class RosterGenerator():
             return result
         except Exception as error:
             print(f'Failed to compute total no of slots: {error}')
+            traceback.print_exc()
             return None
         
     @staticmethod
@@ -44,6 +46,7 @@ class RosterGenerator():
             return result
         except Exception as e:
             print(f'Slots per employee error: {e}')
+            traceback.print_exc()
             return None
 
     @staticmethod

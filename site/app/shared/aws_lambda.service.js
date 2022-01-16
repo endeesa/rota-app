@@ -1,10 +1,11 @@
 // Handles calls to API to fetch and update rooster
+// todo: Use modern fetch API
 export function MakeAsyncGetRequest(endpoint, params, key) {
+
   const http = new XMLHttpRequest();
   const queryStringParams = queryStringBuilder(params);
   const url = `${endpoint}?${queryStringParams}`;
   http.open("GET", url);
-  // http.setRequestHeader('x-api-key', key);
   http.send();
 
   return new Promise((resolve, reject) => {

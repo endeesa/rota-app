@@ -74,7 +74,7 @@ function addEventListeners() {
 
       document.getElementById("loader-placeholder").style.display = "initial";
       const apiResponse = MakeAsyncGetRequest(
-        "https://3ttpf1otke.execute-api.us-west-2.amazonaws.com/qa/rota_geb_roster_api",
+        "/api/RosterEngine",
         {
           span: formVal.spanIndays,
           sections: formVal.sections.length,

@@ -42,6 +42,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
     # staff = req.params.get('staff')
     # TODO: take params from frontend
     generated_roster = prepare_schedule()
+    logging.info(f"Successfully generated {len(generated_roster)} slots")
 
     return func.HttpResponse(
         json.dumps(generated_roster),
