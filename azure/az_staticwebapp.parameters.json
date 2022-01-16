@@ -27,7 +27,7 @@
             "value": "/site/app"
         },
         "apiLocation": {
-            "value": ""
+            "value": "/api"
         },
         "outputLocation": {
             "value": "/site/app/public"
@@ -41,8 +41,7 @@
         },
         "appSettings": {
             "value": {
-                "MY_APP_SETTING1": "value 1",
-                "MY_APP_SETTING2": "value 2"
+                "SHIFT_SPAN_IN_HOURS": "24"
             }
         }
     }
