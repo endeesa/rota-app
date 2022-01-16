@@ -1,40 +1,13 @@
+import json
+import http
 import logging
+from typing import Dict
 
 import azure.functions as func
+from lib.roster_generator import RosterGenerator
 
 
-def main(req: func.HttpRequest) -> func.HttpResponse:
-    logging.info('Python HTTP trigger function processed a request.')
-
-    name = req.params.get('name')
-    if not name:
-        try:
-            req_body = req.get_json()
-        except ValueError:
-            pass
-        else:
-            name = req_body.get('name')
-
-    if name:
-        return func.HttpResponse(f"Hello, {name}. This HTTP triggered function executed successfully.")
-    else:
-        return func.HttpResponse(
-             "This HTTP triggered function executed successfully. Pass a name in the query string or in the request body for a personalized response.",
-             status_code=200
-        )
-
-
-import json
-from helpers.roster_generator import RosterGenerator
-
-
-def main():
-    result = prepare_schedule()
-    print('Working...\n')
-    print('Preparing to return result')
-    print(f'Your full schedule: {result}')
-
-def prepare_schedule(staff=5, sections=3, span=30):
+def prepare_schedule(staff=5, sections=3, span=30) -> Dict:
 
     # Dynamic computations
     total_slots = RosterGenerator.calculate_total_slots(span, sections)
@@ -59,10 +32,19 @@ def prepare_schedule(staff=5, sections=3, span=30):
         span,
         sections
     )
-    
+
     return complete_schedule
 
 
+def main(req: func.HttpRequest) -> func.HttpResponse:
+    logging.info('Python HTTP trigger function processed a request.')
 
-if __name__ == '__main__':
-    main()
+    # staff = req.params.get('staff')
+    # TODO: take params from frontend
+    generated_roster = prepare_schedule()
+
+    return func.HttpResponse(
+        json.dumps(generated_roster),
+        status_code=http.HTTPStatus.OK,
+        mimetype="application/json"
+    )
