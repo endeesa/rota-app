@@ -1,6 +1,6 @@
 import unittest
-from helpers.roster_generator import RosterGenerator
-from app.constants import (WORKFORCE, SCHEDULE_SPAN, NO_OF_WORK_SECTIONS)
+import traceback
+from lib.roster_generator import RosterGenerator
 
 
 class TestConfigValues(unittest.TestCase):
@@ -32,4 +32,5 @@ if __name__ == '__main__':
     try:
         unittest.main()
     except:
-        print("TestConfigValues tests done.")
+        print("Fatal exception while trying to run tests.")
+        traceback.print_exc()

@@ -1,5 +1,6 @@
+import traceback
 import unittest
-from helpers.roster_generator import RosterGenerator
+from lib.roster_generator import RosterGenerator
 
 class TestRosterGenerator(unittest.TestCase):
     gen = RosterGenerator()
@@ -25,4 +26,4 @@ if __name__ == '__main__':
     try:
         unittest.main()
     except:
-        print("Generator tests done!")
+        traceback.print_exc()

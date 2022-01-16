@@ -53,8 +53,7 @@
                     "buildProperties": {
                         "appLocation": "[parameters('appLocation')]",
                         "apiLocation": "[parameters('apiLocation')]",
-                        "outputLocation": "[parameters('outputLocation')]",
-                        "appBuildCommand": "npm run build"
+                        "outputLocation": "[parameters('outputLocation')]"
                     }
                 },
                 "sku": {

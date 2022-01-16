@@ -67,7 +67,7 @@ class RosterGenerator():
         excluded = list()
         track_occurence = frequency_dict
 
-        for i in range(total_slots):
+        for _ in range(total_slots):
             current_no = randint(1, participants)
 
             # Keep generating random no's if current
@@ -81,12 +81,6 @@ class RosterGenerator():
                 excluded.append(current_no)
 
             rooster.append(current_no)
-
-        # TODO; use system wide logger
-        # print('Generated roster.........')
-        # # print(rooster)
-        # print('\n ###########')
-        # print(track_occurence)
 
         self.schedule = rooster
         self.occurence_map = track_occurence

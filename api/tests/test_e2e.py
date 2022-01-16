@@ -1,6 +1,6 @@
+import traceback
 import unittest
-from helpers.roster_generator import RosterGenerator
-import json
+from lib.roster_generator import RosterGenerator
 
 class TestGeneratorE2e(unittest.TestCase):
     gen = RosterGenerator()
@@ -55,5 +55,7 @@ class TestGeneratorE2e(unittest.TestCase):
 if __name__ == '__main__':
     try:
         unittest.main()
-    except:
         print("End-to-ends tests done!")
+    except:
+        traceback.print_exc()
+        
