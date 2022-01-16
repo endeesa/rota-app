@@ -3,7 +3,7 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
         "name": {
-            "value": "rota-app-beta01"
+            "value": "rota-app-beta02"
         },
         "location": { 
             "value": "westeurope"
