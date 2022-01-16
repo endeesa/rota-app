@@ -8,7 +8,7 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack --aot",
+    "build-prod": "webpack --mode=production",
     "start": "npm run build && cd public && swa start",
     "dev": "webpack-dev-server --mode=development"
   },
