@@ -29,7 +29,7 @@
             "apiLocation": {
                 "type": "string"
             },
-            "appArtifactLocation": {
+            "outputLocation": {
                 "type": "string"
             },
             "resourceTags": {
@@ -53,7 +53,7 @@
                     "buildProperties": {
                         "appLocation": "[parameters('appLocation')]",
                         "apiLocation": "[parameters('apiLocation')]",
-                        "appArtifactLocation": "[parameters('appArtifactLocation')]",
+                        "outputLocation": "[parameters('outputLocation')]",
                         "appBuildCommand": "npm run build"
                     }
                 },
